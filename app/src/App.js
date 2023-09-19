@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 361079332;
+const appIndex = 361128231;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
@@ -231,6 +231,8 @@ function App() {
         const signedTx = await peraWallet.signTransaction([actionTxGroup]);
         const { txId } = await algod.sendRawTransaction(signedTx).do();
         const result = await waitForConfirmation(algod, txId, 2);
+        console.log(result);
+        setLocalAmount(1);
         checkAmountState();
         // checkLocalAmountState();
       

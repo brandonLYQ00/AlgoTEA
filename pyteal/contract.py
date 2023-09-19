@@ -50,7 +50,7 @@ def approval_program():
         )
     add_donation = Seq([
         scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        receive_donation(Global.current_application_address(), Btoi(Txn.application_args[1])), # Send the donation to the app creator
+        # receive_donation(Global.current_application_address(), Btoi(Txn.application_args[1])), # Send the donation to the app creator
         App.globalPut(Bytes("Amount"), scratchAmount.load() + Btoi(Txn.application_args[1])),
         Return(Int(1))
     ])
@@ -58,7 +58,7 @@ def approval_program():
 
     deduct_donation = Seq([
         scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        send_donation(Txn.receiver(), Btoi(Txn.application_args[1])), # Send the aid to the applicant
+        # send_donation(Txn.receiver(), Btoi(Txn.application_args[1])), # Send the aid to the applicant
         App.globalPut(Bytes("Amount"), scratchAmount.load() - Btoi(Txn.application_args[1])),
         Return(Int(1))
     ])

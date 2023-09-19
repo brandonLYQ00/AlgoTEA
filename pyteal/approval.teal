@@ -78,10 +78,6 @@ main_l14:
 byte "Amount"
 app_global_get
 store 0
-txn Receiver
-txna ApplicationArgs 1
-btoi
-callsub senddonation_1
 byte "Amount"
 load 0
 txna ApplicationArgs 1
@@ -94,10 +90,6 @@ main_l15:
 byte "Amount"
 app_global_get
 store 0
-global CurrentApplicationAddress
-txna ApplicationArgs 1
-btoi
-callsub receivedonation_0
 byte "Amount"
 load 0
 txna ApplicationArgs 1
@@ -136,39 +128,3 @@ byte "Amount"
 int 0
 app_global_put
 b main_l22
-
-// receive_donation
-receivedonation_0:
-store 3
-store 2
-itxn_begin
-int pay
-itxn_field TypeEnum
-load 2
-itxn_field Receiver
-load 3
-int 1000000
-*
-itxn_field Amount
-int 0
-itxn_field Fee
-itxn_submit
-retsub
-
-// send_donation
-senddonation_1:
-store 5
-store 4
-itxn_begin
-int pay
-itxn_field TypeEnum
-load 4
-itxn_field Receiver
-load 5
-int 1000000
-*
-itxn_field Amount
-int 0
-itxn_field Fee
-itxn_submit
-retsub
