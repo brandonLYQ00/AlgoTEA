@@ -27,7 +27,7 @@ services:
       - 9392:9392
     volumes:
       - type: bind
-        source: ../pyteal-course
+        source: ../../AlgoTEA
         target: /data
 
   indexer:

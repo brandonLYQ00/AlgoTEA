@@ -2,23 +2,23 @@
 txn ApplicationID
 int 0
 ==
-bnz main_l22
+bnz main_l20
 txn OnCompletion
 int OptIn
 ==
-bnz main_l21
+bnz main_l19
 txn OnCompletion
 int CloseOut
 ==
-bnz main_l20
+bnz main_l18
 txn OnCompletion
 int UpdateApplication
 ==
-bnz main_l19
+bnz main_l17
 txn OnCompletion
 int DeleteApplication
 ==
-bnz main_l18
+bnz main_l16
 txn OnCompletion
 int NoOp
 ==
@@ -30,17 +30,17 @@ int 1
 ==
 assert
 txna ApplicationArgs 0
-byte "Add"
+byte "Add_Donation"
 ==
-bnz main_l17
+bnz main_l15
 txna ApplicationArgs 0
-byte "Deduct"
+byte "Deduct_Donation"
 ==
-bnz main_l16
+bnz main_l14
 txna ApplicationArgs 0
 byte "Add_Local"
 ==
-bnz main_l15
+bnz main_l13
 txna ApplicationArgs 0
 byte "Deduct_Local"
 ==
@@ -48,74 +48,127 @@ bnz main_l12
 err
 main_l12:
 txn Sender
-byte "Count"
+byte "Amount"
 app_local_get
 store 1
+txn Sender
+byte "Amount"
 load 1
-int 0
->
-bnz main_l14
+txna ApplicationArgs 1
+btoi
+-
+app_local_put
+int 1
+return
 main_l13:
+txn Sender
+byte "Amount"
+app_local_get
+store 1
+txn Sender
+byte "Amount"
+load 1
+txna ApplicationArgs 1
+btoi
++
+app_local_put
 int 1
 return
 main_l14:
-txn Sender
-byte "Count"
-load 1
-int 1
+byte "Amount"
+app_global_get
+store 0
+txn Receiver
+txna ApplicationArgs 1
+btoi
+callsub senddonation_1
+byte "Amount"
+load 0
+txna ApplicationArgs 1
+btoi
 -
-app_local_put
-b main_l13
-main_l15:
-txn Sender
-byte "Count"
-app_local_get
-store 1
-txn Sender
-byte "Count"
-load 1
+app_global_put
 int 1
+return
+main_l15:
+byte "Amount"
+app_global_get
+store 0
+global CurrentApplicationAddress
+txna ApplicationArgs 1
+btoi
+callsub receivedonation_0
+byte "Amount"
+load 0
+txna ApplicationArgs 1
+btoi
 +
-app_local_put
+app_global_put
 int 1
 return
 main_l16:
-byte "Count"
-app_global_get
-store 0
-byte "Count"
-load 0
-int 1
--
-app_global_put
 int 1
 return
 main_l17:
-byte "Count"
-app_global_get
-store 0
-byte "Count"
-load 0
-int 1
-+
-app_global_put
 int 1
 return
 main_l18:
-int 0
+int 1
 return
 main_l19:
-int 0
+int 1
 return
 main_l20:
+byte "Amount"
+app_global_get
 int 0
-return
-main_l21:
+==
+bnz main_l23
+byte "Amount"
+byte "Amount"
+app_global_get
+app_global_put
+main_l22:
 int 1
 return
-main_l22:
-byte "Count"
+main_l23:
+byte "Amount"
 int 0
 app_global_put
-int 1
-return
+b main_l22
+
+// receive_donation
+receivedonation_0:
+store 3
+store 2
+itxn_begin
+int pay
+itxn_field TypeEnum
+load 2
+itxn_field Receiver
+load 3
+int 1000000
+*
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+retsub
+
+// send_donation
+senddonation_1:
+store 5
+store 4
+itxn_begin
+int pay
+itxn_field TypeEnum
+load 4
+itxn_field Receiver
+load 5
+int 1000000
+*
+itxn_field Amount
+int 0
+itxn_field Fee
+itxn_submit
+retsub

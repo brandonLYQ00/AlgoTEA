@@ -1,6 +1,7 @@
 import './App.css';
 import {PeraWalletConnect} from '@perawallet/connect';
 import algosdk, { waitForConfirmation } from 'algosdk';
+import { getApplicationAddress } from 'algosdk';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,20 +12,22 @@ import { useEffect, useState } from 'react';
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 287941464;
+const appIndex = 361079332;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
 
 function App() {
+  const [appAddress,setAppAddress] = useState(null);
+  const [appBalance,setAppBalance] = useState(null);
   const [accountAddress, setAccountAddress] = useState(null);
-  const [currentCount, setCurrentCount] = useState(null);
-  const [localCount, setLocalCount] = useState(null);
+  const [currentAmount, setCurrentAmount] = useState(null);
+  const [localAmount, setLocalAmount] = useState(1);
   const isConnectedToPeraWallet = !!accountAddress;
 
   useEffect(() => {
-    checkCounterState();
-    checkLocalCounterState();
+    checkAppAddressState();
+    checkAmountState();
     // reconnect to session when the component is mounted
     peraWallet.reconnectSession().then((accounts) => {
       // Setup disconnect event listener
@@ -39,66 +42,97 @@ function App() {
   
   return (
     <Container className='App-header'>
-      <meta name="name" content="Modified Counter App" />
-      <h1> AlgoHUB - Lab 3</h1>
-      <Row>
-        <Col><Button className="btn-wallet"
-      onClick={
-        isConnectedToPeraWallet ? handleDisconnectWalletClick : handleConnectWalletClick
-      }>
-      {isConnectedToPeraWallet ? "Disconnect" : "Connect to Pera Wallet"}
-    </Button></Col>
-    <Col><Button className="btn-wallet"
-      onClick={
-        () => optInToApp()
-      }>
-      Opt-in
-    </Button></Col>
+      <meta name="name" content="AlgoTEA" />
+      <h1> AlgoTEA</h1>
+      <h2>The tertiary education aid that is meant to help raise more scholars around the world by providing them with financial aid</h2>
+      <Col>
+        <h3>AlgoTEA Address</h3>
+        <span className='text'>{appAddress}</span>
+        <h3>AlgoTEA Balance</h3>
+        <span className='text'>{currentAmount} Algos</span>
+        <br></br>
+        <h3>Press the buttons below to donate Algos</h3>
+      </Col>
+      <Row className="center-row">
+        <Button className="btn-wallet"
+          onClick={
+            isConnectedToPeraWallet ? handleDisconnectWalletClick : handleConnectWalletClick
+          }>
+          {isConnectedToPeraWallet ? "Disconnect" : "Connect to Pera Wallet"}
+        </Button>
+        <Button className="btn-wallet"
+          onClick={
+            () => optInToApp()
+          }>
+          Opt-in
+        </Button>
+      </Row> 
+      
+      <Row className="center-row">
+        <Button className="btn-add"
+          onClick={
+              // Add to local amount
+              () => setLocalAmount(localAmount+10)
+            }>
+          10 Algos
+        </Button>
+        <Button className="btn-add"
+          onClick={
+              // Add to local amount
+              () => setLocalAmount(localAmount+100)
+            }>
+          100 Algos
+        </Button>
+        <Button className="btn-add"
+          onClick={
+              // Add to local amount
+              () => setLocalAmount(localAmount+1000)
+            }>
+          1000 Algos
+        </Button>
+        <Button className="btn-add"
+          onClick={
+            // Add to local amount
+            () => {
+              setLocalAmount(localAmount+10000)
+            }
+            }>
+          10000 Algos
+        </Button>
       </Row>
-        
-        
-      <Container>
-        <Row>
-          <Col><Button className="btn-add-local"
-     onClick={
-      // add the method for the local add
-        () => callCounterApplication("Add_Local")
-      }>
-      Increase
-    </Button></Col>
-    <Col>
-    <h3>Local Count</h3>
-    <span className='local-counter-text'>{localCount}</span>
-    </Col>
-          <Col><Button className="btn-dec-local" 
-     onClick={
-      // add the local deduct method
-      () => callCounterApplication("Deduct_Local")
-      }>
-      Decrease
-    </Button></Col>
-        </Row>
-        <Row>
-          <Col><Button className="btn-add-global"
-     onClick={
-      // add the global add function
-        () => callCounterApplication("Add_Global")
-      }>
-      Increase
-    </Button></Col>
-    <Col>
-    <h3>Global Count</h3>
-    <span className='counter-text'>{currentCount}</span>
-    </Col>
-          <Col><Button className="btn-dec-global" 
-     onClick={
-      // add the deduct global function
-      () => callCounterApplication("Deduct_Global")
-      }>
-      Decrease
-    </Button></Col>
-        </Row>
-      </Container>
+      <Row>
+        <Col>
+          
+        </Col>
+        <Col>
+          <h3>Donate</h3>
+          <Row>
+            <form>
+              Amount (Algos):
+              <input type="number" id="amount" name="amount" min="1" value={localAmount}
+              onChange={(e) => setLocalAmount(Number(e.target.value))}></input>
+            </form>
+          </Row>
+          <Button className="btn-add-global"
+            onClick={
+              // Add to local amount and global amount
+              async () => {
+                if (localAmount>0){
+                  await callApplication("Add_Donation");
+                }
+              }
+              
+            }>
+            Donate
+          </Button>
+          <h3>Sender Address</h3>
+          <span className='text'>{accountAddress==null ? "Not connected to Pera Wallet" : accountAddress}</span>
+        </Col>
+        <Col>
+          
+        </Col>
+      </Row>
+    
     </Container>
   );
 
@@ -132,57 +166,76 @@ function App() {
         const result = await waitForConfirmation(algod, txId, 2);
     }
 
-    async function checkCounterState() {
+    async function checkAmountState() {
       try {
-        const counter = await algod.getApplicationByID(appIndex).do();
-        if (!!counter.params['global-state'][0].value.uint) {
-          setCurrentCount(counter.params['global-state'][0].value.uint);
+        const app = await algod.getApplicationByID(appIndex).do();
+        if (!!app.params['global-state'][0].value.uint) {
+          setCurrentAmount(app.params['global-state'][0].value.uint);
         } else {
-          setCurrentCount(0);
+          setCurrentAmount(0);
         }
+
       } catch (e) {
         console.error('There was an error connecting to the algorand node: ', e)
       }
     }
-
-    async function checkLocalCounterState() {
+    async function checkAppAddressState() {
       try {
-        const accountInfo = await algod.accountApplicationInformation(accountAddress,appIndex).do();
-        if (!!accountInfo['app-local-state']['key-value'][0].value.uint) {
-          setLocalCount(accountInfo['app-local-state']['key-value'][0].value.uint);
-        } else {
-          setLocalCount(0);
-        }
-        console.log(accountInfo['app-local-state']['key-value'][0].value.uint);
+        // const appInfo = await algod.getApplicationByID(appIndex).do();
+        // const appAddress = getApplicationAddress(appIndex);
+        const appAddress = algosdk.getApplicationAddress(appIndex);
+        const accInfo= await algod.accountInformation(appAddress).do();
+        setAppAddress(appAddress);
+        setAppBalance(accInfo.amount);
       } catch (e) {
         console.error('There was an error connecting to the algorand node: ', e)
       }
     }
+    
 
-    async function callCounterApplication(action) {
+    // async function checkLocalAmountState() {
+    //   try {
+    //     const accountInfo = await algod.accountApplicationInformation(accountAddress,appIndex).do();
+    //     if (!!accountInfo['app-local-state']['key-value'][0].value.uint) {
+    //       setLocalAmount(accountInfo['app-local-state']['key-value'][0].value.uint);
+    //     } else {
+    //       setLocalAmount(0);
+    //     }
+    //     console.log("Local state amount: "+accountInfo['app-local-state']['key-value'][0].value.uint);
+    //   } catch (e) {
+    //     console.error('There was an error connecting to the algorand node: ', e)
+    //   }
+    // }
+
+    async function callApplication(action) {
       try {
         // get suggested params
         const suggestedParams = await algod.getTransactionParams().do();
-        const appArgs = [new Uint8Array(Buffer.from(action))];
-        
-        const actionTx = algosdk.makeApplicationNoOpTxn(
+        const uint8LocalAmount = new Uint8Array(2);
+        for (let i = 0; i < 2; i++) {
+          uint8LocalAmount[i] = (localAmount >> (8 * (2 - 1 - i))) & 0xff;
+        }
+        const appArgs = [new Uint8Array(Buffer.from(action)),uint8LocalAmount];        
+        const actionTx = 
+        algosdk.makeApplicationNoOpTxn(
           accountAddress,
           suggestedParams,
           appIndex,
           appArgs
           );
-
-        const actionTxGroup = [{txn: actionTx, signers: [accountAddress]}];
+        
+        const actionTxGroup = [
+          {txn: actionTx, signers: [accountAddress]},
+        ];
 
         const signedTx = await peraWallet.signTransaction([actionTxGroup]);
-        console.log(signedTx);
         const { txId } = await algod.sendRawTransaction(signedTx).do();
         const result = await waitForConfirmation(algod, txId, 2);
-        checkCounterState();
-        checkLocalCounterState();
+        checkAmountState();
+        // checkLocalAmountState();
       
       } catch (e) {
-        console.error(`There was an error calling the counter app: ${e}`);
+        console.error(`There was an error calling the  app: ${e}`);
       }
     }
 }
