@@ -1,0 +1,74 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+.title{
+    color: #000;
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Inter;
+font-size: 64px;
+font-style: normal;
+font-weight: 400;
+line-height: 130%; 
+width: 543px;
+margin-top: 3rem;
+}
+
+.subtitle{
+    color: #0090BD;
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Inter;
+font-size: 64px;
+font-style: normal;
+font-weight: 600;
+line-height: 130%; /* 83.2px */
+}
+
+.smallTitleOne{
+    margin-bottom: 5rem;
+    margin-top: 4rem;
+}
+
+.smallTitleTwo{
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.sponsors{
+    width: 20rem;
+    /* background-color: aqua; */
+}
+
+.sponsors h4{
+    font-size: 17px;
+    text-align: center;
+    
+    
+}
+
+.sponsors img{
+    height: 2.5rem;
+    margin-right: 2rem;
+}
+
+
+footer{
+    margin-top: 10rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button{
+    position: absolute;  right: 0;
+    text-align: center;
+    margin-right: 5rem;
+   
+   
+}
+
+.button button{
+    
+    width: 15rem;
+    height: 3rem;
+    background-color: #6FFCD2;
+    margin-bottom: 10px;
+}

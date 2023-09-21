@@ -1,0 +1,28 @@
+.bubble {
+    margin: 0px;
+    width: 1030px;
+    height: 1030px;
+    overflow: hidden;
+    /* border-radius: 0 0 100% 100%; */
+    border-radius: 50%;
+    background-color: #E3F8FF;
+    opacity: 0.6;
+
+}
+
+
+
+@keyframes bubbleAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
