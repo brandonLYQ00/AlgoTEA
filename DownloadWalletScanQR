@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate via Algorand Wallet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .instructions {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        #qr-code {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        #download-link {
+            font-size: 18px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Donate via Algorand Wallet</h1>
+    <div class="instructions">
+        <p>1. Download the Algorand Wallet from your app store:</p>
+        <a id="download-link" href="https://algorand.com/wallet" target="_blank">Download Algorand Wallet</a>
+        <p>2. Open the Algorand Wallet app.</p>
+        <p>3. Scan the QR code below to make a donation:</p>
+    </div>
+    <img id="qr-code" src="your_qr_code_image_url" alt="Algorand Wallet QR Code">
+    <p>Thank you for your support!</p>
+
+    <!-- Optional JavaScript to handle QR code scanning -->
+    <script>
+        // You can add JavaScript code here to handle QR code scanning if needed
+        // For example, you can use a library like `zxing` for QR code scanning
+        // Provide instructions to the user on how to scan the QR code using their Algorand Wallet app
+    </script>
+</body>
+</html>
