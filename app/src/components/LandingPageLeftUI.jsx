@@ -1,11 +1,13 @@
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import LandingPageRight from "./LandingPageRightUI";
+// import Logo from'../Assets/logo-1.png'
+// import LogoName from '../Assets/logo-name.png'
 
 function LandingLeft() {
   return (
     <>
       {/* <div style={{ position: "absolute", top: -500, right: -200 , margin:'0px', padding:'0px' }} className={classes.bubble} ></div> */}
-      <MDBContainer style={{ display: "flex", marginLeft: "0px" , }}>
+      <MDBContainer style={{ display: "flex", marginLeft: "0px" }}>
         <MDBContainer
           style={{ width: "25%", display: "flex", marginRight: "20rem" }}>
           <MDBCol size="12">
@@ -18,8 +20,8 @@ function LandingLeft() {
                 backgroundColor: "#6FFCD2",
                 height: "10rem",
               }}>
-              <div  >
-                <h7>It gives me updates on my donation. So reliable !</h7>
+              <div>
+                <h6>It gives me updates on my donation. So reliable !</h6>
                 <br />
                 <i>Puma,</i>
                 <br />
@@ -85,7 +87,7 @@ function LandingLeft() {
           </MDBCol>
         </MDBContainer>
         <MDBContainer style={{ width: "100%" }}>
-       <LandingPageRight></LandingPageRight>
+          <LandingPageRight></LandingPageRight>
         </MDBContainer>
       </MDBContainer>
     </>

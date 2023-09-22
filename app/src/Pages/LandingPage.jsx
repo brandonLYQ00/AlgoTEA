@@ -1,9 +1,9 @@
+import LandingLeft from  "../components/LandingPageLeftUI";
 
-
-
-
-function LandingPage(){
-
+function LandingPage() {
+    return (
+        <LandingLeft></LandingLeft>
+    );
 }
 
 export default LandingPage;

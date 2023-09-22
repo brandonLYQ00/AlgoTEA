@@ -243,18 +243,35 @@
 
 // export default App;
 import React from "react";
-import LandingLeft from "./components/LandingPageLeftUI";
+import LandingPage from "./Pages/LandingPage";
+import { Routes, Route } from "react-router-dom";
+import SignUpPage from "./Pages/SignupPage";
 
-
-
-
-
+import MainNavigation from "./Pages/ProfilePage/MainNavigation";
+import { useLocation } from 'react-router-dom';
+import ProfilePageHome from "./Pages/ProfilePage/ProfilePageHome";
+import ProfilePageHistory from "./Pages/ProfilePage/ProfilePageHistory";
+import ProfilePage from './Pages/ProfilePage/ProfilePage'
 function App() {
+  const currentPath = useLocation();
+  console.log(currentPath.pathname);
   return (
-    <div > 
-      <LandingLeft ></LandingLeft>
-     
-    
+    <div>
+     {
+      currentPath.pathname!=='/' && currentPath.pathname!=='/signup' ? <MainNavigation></MainNavigation> : null
+     }
+      <Routes>
+        <Route path="/" element={<LandingPage></LandingPage>}>
+          {" "}
+        </Route>
+        <Route path="/signup" element={<SignUpPage></SignUpPage>}>
+          {" "}
+        </Route>
+        
+        <Route path="/profile/home" element={<ProfilePageHome></ProfilePageHome>}></Route>
+        <Route path="/profile/history" element={<ProfilePageHistory></ProfilePageHistory>}></Route>
+        <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
+      </Routes>
     </div>
   );
 }

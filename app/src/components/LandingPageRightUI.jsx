@@ -1,4 +1,5 @@
 import classes from "../style/LandingPageRight.module.css";
+import { Link } from "react-router-dom";
 
 function LandingPageRight() {
   return (
@@ -16,7 +17,7 @@ function LandingPageRight() {
         <h3>Secure your donation with blockchain technology</h3>
         <h3>Secure your donation with blockchain technology</h3>
       </div>
-      <footer >
+      <footer>
         <div className={classes.sponsors}>
           <div>
             <h4>In collaboration with</h4>
@@ -33,13 +34,16 @@ function LandingPageRight() {
           </div>
         </div>
         <div className={classes.button}>
-            <button type="button" class="btn">SignUp Now</button>
-            <div>
+          <Link to={'/signup'}>
+            {" "}
+            <button type="button" class="btn">
+              SignUp Now
+            </button>
+          </Link>
+          <div>
             <p>Already has an account? Sign in here</p>
+          </div>
         </div>
-        </div>
-       
-       
       </footer>
     </>
   );

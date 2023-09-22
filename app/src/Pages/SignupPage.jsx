@@ -1,0 +1,95 @@
+import classes from "../style/SignupPage.module.css";
+import Logo from'../Assets/logo-1.png'
+import LogoName from '../Assets/logo-name.png'
+import { Link } from "react-router-dom";
+
+
+function SignUpPage() {
+  return (
+    <main >
+      <div className={classes.container}>
+        <div className={classes.image}>
+          <h1 className={classes.logo}>
+            <img src={Logo} alt="" />
+            <img src={LogoName} alt="" />
+          </h1>
+          <div className={classes.words}>
+            <h1>Amplify your impact, one secure donation at a time.</h1>
+            <h1>Protect your kindness, share your love</h1>
+            <h1>
+              Your generosity, fortified by blockchain, is a gift that keeps on
+              giving.
+            </h1>
+            <h1> Making your donations both secure and accountable</h1>
+          </div>
+        </div>
+        <div className={classes.forms}>
+          <h3>Building one future leader at a time</h3>
+          <form action="">
+            <div >
+              <label for="exampleFormControlInput1" class="form-label" >
+               First Name
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                // placeholder="name@example.com"
+
+              />
+            </div>
+
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">
+               Last Name
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                // placeholder="name@example.com"
+              />
+            </div>
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput1"
+                // placeholder="name@example.com"
+              />
+            </div>
+            <div >
+              <label for="exampleFormControlInput1" class="form-label">
+                Phone Number 
+              </label>
+              <input
+                type="tel"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="+60-0125986653"
+
+              />
+            </div>
+            <div className={classes.button}>
+          <Link to={'/profile/home'}>
+          <button type="button" class="btn" >
+              SignUp Now
+            </button></Link>
+            <div>
+            <p>By signing up, you agree to our terms & conditions.</p>
+        </div>
+         
+        </div>
+
+       
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default SignUpPage;
