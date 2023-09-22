@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 18px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <div class="container">
+        <h2>Welcome, John Doe</h2>
+        <p>Email: john@example.com</p>
+        
+        <h3>Donation History</h3>
+        <ul>
+            <li>
+                <strong>Date:</strong> September 15, 2023<br>
+                <strong>Amount:</strong> $50<br>
+                <strong>Cause:</strong> Charity A
+            </li>
+            <li>
+                <strong>Date:</strong> August 28, 2023<br>
+                <strong>Amount:</strong> $30<br>
+                <strong>Cause:</strong> Charity B
+            </li>
+            <!-- Add more donation history items as needed -->
+        </ul>
+    </div>
+</body>
+</html>
