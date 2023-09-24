@@ -1,6 +1,6 @@
 import './App.css';
 import {PeraWalletConnect} from '@perawallet/connect';
-import algosdk, { waitForConfirmation } from 'algosdk';
+import algosdk, { algosToMicroalgos, microalgosToAlgos, waitForConfirmation } from 'algosdk';
 import { getApplicationAddress } from 'algosdk';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 361128231;
+const appIndex = 365663227;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
@@ -21,13 +21,12 @@ function App() {
   const [appAddress,setAppAddress] = useState(null);
   const [appBalance,setAppBalance] = useState(null);
   const [accountAddress, setAccountAddress] = useState(null);
-  const [currentAmount, setCurrentAmount] = useState(null);
   const [localAmount, setLocalAmount] = useState(1);
   const isConnectedToPeraWallet = !!accountAddress;
 
   useEffect(() => {
     checkAppAddressState();
-    checkAmountState();
+    // checkAmountState();
     // reconnect to session when the component is mounted
     peraWallet.reconnectSession().then((accounts) => {
       // Setup disconnect event listener
@@ -49,7 +48,7 @@ function App() {
         <h3>AlgoTEA Address</h3>
         <span className='text'>{appAddress}</span>
         <h3>AlgoTEA Balance</h3>
-        <span className='text'>{currentAmount} Algos</span>
+        <span className='text'>{appBalance/1000000} Algos</span>
         <br></br>
         <h3>Press the buttons below to donate Algos</h3>
       </Col>
@@ -118,12 +117,25 @@ function App() {
               // Add to local amount and global amount
               async () => {
                 if (localAmount>0){
+                  await callApplication("");
                   await callApplication("Add_Donation");
                 }
               }
               
             }>
             Donate
+          </Button>
+          <Button className="btn-add-global"
+            onClick={
+              // Send
+              async () => {
+                if (localAmount>0){
+                  await callApplication("Deduct_Donation");
+                }
+              }
+              
+            }>
+            Send
           </Button>
           <h3>Sender Address</h3>
           <span className='text'>{accountAddress==null ? "Not connected to Pera Wallet" : accountAddress}</span>
@@ -161,24 +173,23 @@ function App() {
       const optInTxGroup = [{txn: optInTxn, signers: [accountAddress]}];
 
         const signedTx = await peraWallet.signTransaction([optInTxGroup]);
-        console.log(signedTx);
         const { txId } = await algod.sendRawTransaction(signedTx).do();
         const result = await waitForConfirmation(algod, txId, 2);
     }
 
-    async function checkAmountState() {
-      try {
-        const app = await algod.getApplicationByID(appIndex).do();
-        if (!!app.params['global-state'][0].value.uint) {
-          setCurrentAmount(app.params['global-state'][0].value.uint);
-        } else {
-          setCurrentAmount(0);
-        }
+    // async function checkAmountState() {
+    //   try {
+    //     const app = await algod.getApplicationByID(appIndex).do();
+    //     if (!!app.params['global-state'][0].value.uint) {
+    //       setCurrentAmount(app.params['global-state'][0].value.uint);
+    //     } else {
+    //       setCurrentAmount(0);
+    //     }
 
-      } catch (e) {
-        console.error('There was an error connecting to the algorand node: ', e)
-      }
-    }
+    //   } catch (e) {
+    //     console.error('There was an error connecting to the algorand node: ', e)
+    //   }
+    // }
     async function checkAppAddressState() {
       try {
         // const appInfo = await algod.getApplicationByID(appIndex).do();
@@ -209,32 +220,58 @@ function App() {
 
     async function callApplication(action) {
       try {
-        // get suggested params
+        const accInfo= await algod.accountInformation(accountAddress).do();
         const suggestedParams = await algod.getTransactionParams().do();
-        const uint8LocalAmount = new Uint8Array(2);
-        for (let i = 0; i < 2; i++) {
-          uint8LocalAmount[i] = (localAmount >> (8 * (2 - 1 - i))) & 0xff;
+        if(action==""){
+          console.log("Payment")
+          const payTxn= algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+            from: accountAddress,
+            suggestedParams: suggestedParams,
+            to: appAddress,
+            amount: algosToMicroalgos(localAmount),
+          });
+          const txnGroup=[
+            {txn: payTxn, signers: [accountAddress]},
+          ];
+          const signedTxn = await peraWallet.signTransaction([txnGroup]);
+          const { txId } = await algod.sendRawTransaction(signedTxn).do();
+          const result = await waitForConfirmation(algod, txId, 3);
+          console.log(result);
+        } else{
+          console.log("Modify global state");
+          const uint8LocalAmount = new Uint8Array(2);
+          for (let i = 0; i < 2; i++) {
+            uint8LocalAmount[i] = (localAmount >> (8 * (2 - 1 - i))) & 0xff;
+          }
+          const appArgs = [new Uint8Array(Buffer.from(action)),uint8LocalAmount];        
+          const actionTx = 
+          algosdk.makeApplicationNoOpTxn(
+            accountAddress,
+            suggestedParams,
+            appIndex,
+            appArgs
+            );
+            const txnGroup=[
+              {txn: actionTx, signers: [accountAddress]},
+            ];
+            const signedTxn = await peraWallet.signTransaction([txnGroup]);
+            const { txId } = await algod.sendRawTransaction(signedTxn).do();
+            const result = await waitForConfirmation(algod, txId, 2);
         }
-        const appArgs = [new Uint8Array(Buffer.from(action)),uint8LocalAmount];        
-        const actionTx = 
-        algosdk.makeApplicationNoOpTxn(
-          accountAddress,
-          suggestedParams,
-          appIndex,
-          appArgs
-          );
         
-        const actionTxGroup = [
-          {txn: actionTx, signers: [accountAddress]},
-        ];
+        // // get suggested params
+        // const suggestedParams = await algod.getTransactionParams().do();
+        
+        // const actionTxGroup = [
+        //   {txn: actionTx, signers: [accountAddress]},
+        // ];
 
-        const signedTx = await peraWallet.signTransaction([actionTxGroup]);
-        const { txId } = await algod.sendRawTransaction(signedTx).do();
-        const result = await waitForConfirmation(algod, txId, 2);
-        console.log(result);
+        // const signedTx = await peraWallet.signTransaction([actionTxGroup]);
+        // const { txId } = await algod.sendRawTransaction(signedTx).do();
+        // const result = await waitForConfirmation(algod, txId, 2);
+        // console.log(result);
         setLocalAmount(1);
-        checkAmountState();
-        // checkLocalAmountState();
+        // // checkLocalAmountState();
       
       } catch (e) {
         console.error(`There was an error calling the  app: ${e}`);
@@ -243,3 +280,4 @@ function App() {
 }
 
 export default App;
+
