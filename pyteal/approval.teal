@@ -75,6 +75,17 @@ app_local_put
 int 1
 return
 main_l14:
+itxn_begin
+int pay
+itxn_field TypeEnum
+txna ApplicationArgs 1
+btoi
+int 1000000
+*
+itxn_field Amount
+txn Sender
+itxn_field Receiver
+itxn_submit
 byte "Amount"
 app_global_get
 store 0
@@ -99,13 +110,13 @@ app_global_put
 int 1
 return
 main_l16:
-int 1
+int 0
 return
 main_l17:
-int 1
+int 0
 return
 main_l18:
-int 1
+int 0
 return
 main_l19:
 int 1

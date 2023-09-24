@@ -15,50 +15,29 @@ def approval_program():
     ])
 
     handle_optin = Return(Int(1))
-    handle_closeout = Return(Int(1))
-    handle_updateapp = Return(Int(1))
-    handle_deleteapp = Return(Int(1))
+    handle_closeout = Return(Int(0))
+    handle_updateapp = Return(Int(0))
+    handle_deleteapp = Return(Int(0))
     scratchAmount = ScratchVar(TealType.uint64)
     localAmount = ScratchVar(TealType.uint64)
-    @Subroutine(TealType.none)
-    def receive_donation(account: Expr, amount: Expr):
-        return Seq(
-            InnerTxnBuilder.Begin(),
-            InnerTxnBuilder.SetFields(
-                {
-                    TxnField.type_enum: TxnType.Payment,
-                    TxnField.receiver: account,
-                    TxnField.amount: Mul(amount,Int(1000000)),
-                    TxnField.fee: Int(0),  # use fee pooling
-                }
-            ),
-            InnerTxnBuilder.Submit(),
-        )
-    @Subroutine(TealType.none)
-    def send_donation(account: Expr, amount: Expr):
-        return Seq(
-            InnerTxnBuilder.Begin(),
-            InnerTxnBuilder.SetFields(
-                {
-                    TxnField.type_enum: TxnType.Payment,
-                    TxnField.receiver: account,
-                    TxnField.amount: Mul(amount,Int(1000000)),
-                    TxnField.fee: Int(0),  # use fee pooling
-                }
-            ),
-            InnerTxnBuilder.Submit(),
-        )
     add_donation = Seq([
         scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        # receive_donation(Global.current_application_address(), Btoi(Txn.application_args[1])), # Send the donation to the app creator
         App.globalPut(Bytes("Amount"), scratchAmount.load() + Btoi(Txn.application_args[1])),
         Return(Int(1))
     ])
     
 
     deduct_donation = Seq([
+        InnerTxnBuilder.Begin(),
+        InnerTxnBuilder.SetFields(
+            {
+                TxnField.type_enum: TxnType.Payment,
+                TxnField.amount: Mul(Btoi(Txn.application_args[1])*Int(1000000)),
+                TxnField.receiver: Txn.sender(),
+            }
+        ),
+        InnerTxnBuilder.Submit(),
         scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        # send_donation(Txn.receiver(), Btoi(Txn.application_args[1])), # Send the aid to the applicant
         App.globalPut(Bytes("Amount"), scratchAmount.load() - Btoi(Txn.application_args[1])),
         Return(Int(1))
     ])
