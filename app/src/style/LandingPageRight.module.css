@@ -1,0 +1,88 @@
+
+/* right */
+
+.right{
+    display: flex;
+      /* background-color: rgb(43, 159, 226); */
+      justify-content: space-between;
+      flex-direction: column;
+      width: 65vw;
+      padding-left: 40px;
+     
+  
+  }
+
+  .title{
+    color: #000;
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Inter;
+font-size: 64px;
+font-style: normal;
+font-weight: 400;
+line-height: 130%; 
+width: 543px;
+margin-top: 3rem;
+}
+
+.subtitle{
+    color: #0090BD;
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Inter;
+font-size: 64px;
+font-style: normal;
+font-weight: 600;
+line-height: 130%; /* 83.2px */
+}
+
+.smallTitleOne{
+    margin-bottom: 5rem;
+   
+}
+
+.smallTitleTwo{
+    margin-bottom: 5rem;
+    
+}
+  
+  .content{
+      margin-top: 3rem;
+  }
+  
+  .sponsorsSignup{
+      /* background-color: burlywood; */
+      display: flex;
+      justify-content: space-between;
+      margin-right: 30px;
+      margin-bottom: 30px;
+  }
+
+.sponsors img{
+    height: 2.5rem;
+    margin-right: 2rem;
+}
+
+.sponsors{
+    width: 20rem;
+    /* background-color: aqua; */
+}
+
+.sponsors p{
+    font-size: 17px;
+    text-align: center;
+    
+    
+}
+
+.button button{
+    margin-right: 15px;
+    width: 15rem;
+    height: auto;
+    background-color: #6FFCD2;
+    margin-bottom: 10px;
+}
+
+.p{
+    font-size: 15px;
+    text-align: center;
+}
+
