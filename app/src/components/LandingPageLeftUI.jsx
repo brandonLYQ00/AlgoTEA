@@ -1,95 +1,93 @@
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import LandingPageRight from "./LandingPageRightUI";
-// import Logo from'../Assets/logo-1.png'
-// import LogoName from '../Assets/logo-name.png'
+// import Logo from "../Assets/logo-1.png";
+// import LogoName from "../Assets/logo-name.png";
+
+import classes from "../style/LandingPageLeft.module.css";
+
 
 function LandingLeft() {
   return (
     <>
-      {/* <div style={{ position: "absolute", top: -500, right: -200 , margin:'0px', padding:'0px' }} className={classes.bubble} ></div> */}
-      <MDBContainer style={{ display: "flex", marginLeft: "0px" }}>
-        <MDBContainer
-          style={{ width: "25%", display: "flex", marginRight: "20rem" }}>
-          <MDBCol size="12">
-            <MDBRow style={{ margin: "2rem", height: "7rem" }}>
-              <h2>AlgoTEA</h2>
-            </MDBRow>
-            <MDBRow
-              style={{
-                margin: "0.7rem",
-                backgroundColor: "#6FFCD2",
-                height: "10rem",
-              }}>
-              <div>
-                <h6>It gives me updates on my donation. So reliable !</h6>
-                <br />
-                <i>Puma,</i>
-                <br />
-                <i>AlgoTEA donor</i>
-              </div>
-            </MDBRow>
-            <MDBRow
-              style={{
-                margin: "0.7rem",
-                backgroundColor: "#152520",
-                color: "white",
-                height: "25rem",
-              }}>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus ratione quaerat eveniet distinctio dolorem quas
-                officiis quibusdam, incidunt vel a corrupti molestias aspernatur
-                ipsam explicabo vero, quisquam, consequuntur reiciendis nisi.
-              </p>
-            </MDBRow>
-            <MDBRow style={{ margin: "2rem", marginBottom: "0" }}>
-              <p style={{ fontSize: "11px" }}>
-                2023 AlgoTEA - All rights reserved
-              </p>
-            </MDBRow>
-          </MDBCol>
+      <main className={classes.main}>
+        <div className={classes.left}>
+          <div className={classes.logoClm}>
+            <div className={classes.logoName} style={{ height: "5rem" }}>
+              AlgoTEA
+              {/* <img src={Logo} alt="" />
+              <img src={LogoName} alt="logoName" className={classes.algotea} /> */}
+            </div>
 
-          <MDBCol size="12">
-            <MDBRow
-              style={{
-                marginTop: "0rem ",
-                marginBottom: "0.7rem",
-                marginRight: "0.7rem",
-                marginLeft: "0.7rem",
-                backgroundColor: "#152520",
-                color: "white",
-                height: "15rem",
-              }}>
-              <p>I can now study without worrying about the next meal</p>
-              <i>Jason</i>
-              <i>Architecture major</i>
-            </MDBRow>
-            <MDBRow
-              style={{
-                margin: "0.7rem",
-                backgroundColor: "#E5E5E5",
-                color: "black",
-                height: "25rem",
-              }}>
+            <div className={classes.box} style={{ backgroundColor: "#6FFCD2" }}>
+              <p>“It gives me updates on the my donation. So reliable!”</p>
+
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                placeat dolore at nihil assumenda mollitia quidem, commodi
-                quibusdam neque eum quis maiores aliquam minus aut debitis iste
-                odit dignissimos totam.
+                <i>Puman,</i>
               </p>
-            </MDBRow>
-            <MDBRow
-              style={{
-                margin: "0.7rem",
-                backgroundColor: "#6FFCD2",
-                height: "10rem",
-              }}></MDBRow>
-          </MDBCol>
-        </MDBContainer>
-        <MDBContainer style={{ width: "100%" }}>
-          <LandingPageRight></LandingPageRight>
-        </MDBContainer>
-      </MDBContainer>
+              <p>
+                <i>AlgoTEA donor</i>
+              </p>
+            </div>
+
+            <div
+              className={classes.box}
+              style={{ backgroundColor: "#152520", color: "white" }}>
+              <p>
+                “I got prohibited from taking exams due to my overdue pending
+                fee. My part-time job only supports my daily expenses. I felt
+                hopeless thinking I had to terminate my study after so much hard
+                work. Thank you for the donors who brought light to my dreams.”
+              </p>
+
+              <p>
+                <i>Anonymous,</i>
+              </p>
+              <p>
+                <i>Business Admin major</i>
+              </p>
+            </div>
+
+            <div className={classes.box} style={{ fontSize: "12px" }}>
+              <p>2023 AlgoTEA - All rights reserved</p>
+            </div>
+          </div>
+          <div className={classes.logoClm} style={{ marginTop: "0px" }}>
+            <div
+              className={classes.box}
+              style={{ backgroundColor: "#152520", color: "white" }}>
+              <p>“I can now study without worrying about the next meal.”</p>
+
+              <p>
+                <i>Jason,</i>
+              </p>
+              <p>
+                <i>Architecture major</i>
+              </p>
+            </div>{" "}
+            <div
+              className={classes.box}
+              style={{ height: "300px", backgroundColor: "#E5E5E5" }}>
+              <p>
+                “AlgoTEA has made it effortlessly easier to donate to students
+                in need. The signup process is a no hassle too!”
+              </p>
+
+              <p>
+                <i>Ms Amirah Jusuf,</i>
+              </p>
+              <p>
+                <i>Devoted AlgoTEA donor </i>
+              </p>
+              <p>
+                <i>for 2 years. </i>
+              </p>
+            </div>{" "}
+            <div
+              className={classes.box}
+              style={{ height: "200px", backgroundColor: "#6FFCD2" }}></div>
+          </div>
+        </div>
+<LandingPageRight></LandingPageRight>
+      </main>
     </>
   );
 }
