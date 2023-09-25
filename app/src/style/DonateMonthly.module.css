@@ -1,0 +1,120 @@
+.main {
+  /* background-color: aquamarine; */
+  padding-left: 30px;
+}
+
+.inputArea {
+  background-color: #a0b4ae4e;
+  width: 50%;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
+p,
+input {
+  margin-left: 20px;
+}
+p {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+input {
+  background-color: none;
+  border: none;
+  border-radius: 5px;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+/* input::placeholder {
+  color: rgba(13, 13, 13, 0.117);
+} */
+
+.terms_condition {
+  /* background-color: pink; */
+  margin-top: 20px;
+}
+.checkbox {
+  display: flex;
+  /* background-color: yellow; */
+  align-items: center;
+}
+
+.checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  margin-left: 0px;
+  accent-color: #6ffcd2; /* Change the background color to grey */
+  border: none; /* Remove the border */
+  width: 15px;
+  height: 15px;
+  /* margin-right: 5px; Add spacing between the checkbox and text if needed */
+}
+
+.checkbox h5 {
+  padding-top: 10px;
+}
+
+.contribute {
+  /* background-color: crimson; */
+  width: 80%;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.contribution {
+  /* background-color: aliceblue; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.contribution button {
+  background-color: #a0b4ae4e;
+}
+
+.contribute .contribution input,
+.inputArea input {
+  background-color: #a0b4ae4e;
+  width: 50%;
+  border-radius: 10px;
+  padding: 10px 0;
+  padding-left: 20px;
+}
+
+.contribute p {
+  margin-top: 10px;
+  font-weight: 100;
+  font-size: smaller;
+  float: right;
+  opacity: 0.6;
+}
+
+.buttons {
+  /* background-color: antiquewhite; */
+
+  width: 90%;
+  display: flex;
+  justify-content: right;
+  height: 45px;
+}
+
+.primary_btn {
+  background-color: #6ffcd2;
+  color: black;
+  margin-left: 20px;
+  width: 160px;
+  border-radius: 10px;
+}
+
+.secondary_btn {
+  background-color: #a0b4ae4e;
+  border-radius: 10px;
+
+  color: black;
+}
+
+.buttons button:hover {
+  background-color: #6ffcd2;
+}
