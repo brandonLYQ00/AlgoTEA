@@ -1,0 +1,23 @@
+.terms_condition {
+    /* background-color: pink; */
+    margin-top: 20px;
+  }
+  .checkbox {
+    display: flex;
+    /* background-color: yellow; */
+    align-items: center;
+  }
+  
+  .checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    margin-left: 0px;
+    accent-color: #6ffcd2; /* Change the background color to grey */
+    border: none; /* Remove the border */
+    width: 15px;
+    height: 15px;
+    /* margin-right: 5px; Add spacing between the checkbox and text if needed */
+  }
+  
+  .checkbox h5 {
+    padding-top: 10px;
+  }

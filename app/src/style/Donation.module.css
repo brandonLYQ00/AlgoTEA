@@ -1,4 +1,5 @@
 .main {
+    margin-top: 10px;
   display: flex;
   /* text-align: center; */
   justify-content: center;
@@ -13,15 +14,18 @@
 }
 
 .card_measure{
-    width: 55rem;
-    height: 35rem;
+  
+    width: 45rem;
+    height: 40rem;
 }
 
 .card_body_props{
     /* background-color: yellow; */
     align-items: center;
-    /* padding-right: 20px;
-    padding-left: 20px; */
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .options{
@@ -37,7 +41,7 @@
 }
 .button button{
     margin-right: 15px;
-    width: 20rem;
+    width: 15rem;
     height: auto;
     background-color: #a0b4ae4e;
     margin-bottom: 10px;
@@ -47,6 +51,8 @@
 .button button:hover{
     background-color: #6FFCD2;
 }
+
+
 
 
 
