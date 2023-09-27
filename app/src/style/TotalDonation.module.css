@@ -1,0 +1,18 @@
+
+.total_amount {
+    color: white;
+    padding-top: 10px;
+}
+
+.moreInfo{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: auto;
+    
+    
+}
+
+.bills{
+    padding: 20px;
+}
