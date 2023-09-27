@@ -1,0 +1,17 @@
+.main {
+  padding-left: 10%;
+  padding-right: 10%;
+  /* background-color: green; */
+  margin-left: 75px;
+  margin-right: 75px;
+
+}
+
+.summary{
+  text-align: center;
+  background-color: black;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}

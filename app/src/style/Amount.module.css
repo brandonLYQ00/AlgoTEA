@@ -1,0 +1,47 @@
+/* .amount {
+  padding-left: 10%;
+  padding-right: 10%;
+} */
+
+.inputArea {
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+  background-color: #a0b4ae4e;
+
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
+.inputArea p ,
+.inputArea input {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+}
+.inputArea p {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+input {
+  background-color: none;
+  border: none;
+  border-radius: 5px;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+.inputArea input {
+  background-color: transparent;
+  width: 50%;
+  direction: ltr;
+  text-align: right;
+  border-radius: 10px;
+  padding: 10px 0;
+  padding-right: 20px;
+  margin-right: 10px;
+}
