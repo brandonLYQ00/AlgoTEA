@@ -7,21 +7,24 @@
     /* display: flex; */
     /* justify-content: right; */
     height: 45px;
+    
   }
   
-  .primary_btn {
+  .primary_btn  {
     background-color: #6ffcd2;
     color: black;
     margin-left: 20px;
-    width: 160px;
+    width: 50%;
     border-radius: 10px;
+    /* height: 100%; */
   }
   
   .secondary_btn {
     background-color: #a0b4ae4e;
     border-radius: 10px;
-  
+    width: 35%;
     color: white;
+    /* height: 100%; */
   }
   
   .buttons button:hover {

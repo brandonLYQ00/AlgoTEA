@@ -23,6 +23,13 @@ function MainNavigation() {
             <Link to={"/profile"}>Profile</Link>
           </li>
         </ul>
+        <ul>
+          <li>
+            <Link to={'/apply-donation/overview'}>
+              <button><p>Apply for Donation</p></button>
+            </Link>
+          </li>
+        </ul>
       </nav>
     </header>
   );
