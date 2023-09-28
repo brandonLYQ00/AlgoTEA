@@ -1,0 +1,125 @@
+.main {
+  /* background-color: aqua; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: aqua; */
+}
+
+.request_form {
+  display: flex;
+}
+.request_card {
+  /* padding: 20px; */
+  /* background-color: aqua; */
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  /* width: 100%; */
+}
+
+.request_form i {
+  margin-right: 30px;
+  cursor: pointer;
+  height: 30px;
+  width: 30%;
+  /* background-color: #6ffcd2; */
+  font-feature-settings: "clig" off, "liga" off;
+  
+  
+}
+
+.honest {
+    margin-top: 20px;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+
+.honest strong{
+    font-weight: bolder;
+}
+
+.honest .disclaimer{
+    font-weight: normal;
+}
+
+.request_card .card-body {
+  padding: 20px;
+}
+
+.request_card h2 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.request_card .request_content {
+  padding: 20px;
+}
+
+.request_card .request_content p {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 20.8px */
+  padding-top: 10px;
+}
+
+.request_card .request_content input {
+  width: 80%;
+  height: 3rem;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+.request_card .request_content .disclaimer {
+  color: rgba(78, 69, 69, 0.92);
+  padding-left: 20px;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 15.6px */
+}
+
+.bottom {
+  background-color: black;
+  text-align: center;
+}
+
+.bottom p {
+    color: white;
+  }
+
+.personal_button {
+  width: 100%;
+  /* background-color: aliceblue; */
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.personal_button button {
+  width: 60%;
+  height: 40px;
+  border-radius: 10px;
+  border: 0px solid transparent;
+  background: #6ffcd2;
+}
+
+.personal_button button:hover {
+  color: white;
+  background: black;
+}

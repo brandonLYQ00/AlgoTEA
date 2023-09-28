@@ -25,7 +25,7 @@ function MainNavigation() {
         </ul>
         <ul>
           <li>
-            <Link>
+            <Link to={'/apply-donation/overview'}>
               <button><p>Apply for Donation</p></button>
             </Link>
           </li>

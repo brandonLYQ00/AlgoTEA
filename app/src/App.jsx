@@ -253,6 +253,10 @@ import ProfilePageHome from "./Pages/ProfilePage/ProfilePageHome";
 import ProfilePageHistory from "./Pages/ProfilePage/ProfilePageHistory";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import DonationFormPage from "./Pages/DonationFormPage";
+import ApplicationOverview from "./Pages/ApplyDonation/OverviewPage";
+import PersonalInfo from "./Pages/ApplyDonation/PersonalInfoPage";
+import DonationInfo from "./Pages/ApplyDonation/DonationInfoPage";
+import SuccessPage from "./Pages/ApplyDonation/SuccessPage";
 
 function App() {
   const currentPath = useLocation().pathname;
@@ -261,7 +265,8 @@ function App() {
   const showNavigation =
     currentPath !== "/" &&
     currentPath !== "/signup" &&
-    !currentPath.includes("/profile/home/donation-form");
+    !currentPath.includes("/profile/home/donation-form") &&
+    !currentPath.includes('/apply-donation');
 
   return (
     <div>
@@ -276,6 +281,11 @@ function App() {
           path="/profile/home/donation-form"
           element={<DonationFormPage />}
         />
+        <Route path="/apply-donation/overview" element={<ApplicationOverview/>}/>
+        <Route path="/apply-donation/personal-info" element={<PersonalInfo/>}/>
+        <Route path="/apply-donation/donation-info" element={<DonationInfo/>}/>
+        <Route path="/apply-donation/success" element={<SuccessPage/>}/>
+
       </Routes>
     </div>
   );
