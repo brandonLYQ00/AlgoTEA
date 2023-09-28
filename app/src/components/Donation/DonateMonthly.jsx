@@ -9,13 +9,17 @@ import ButtonsPair from "./ButtonsPair";
 import { useState } from "react";
 
 function DonateMonthly() {
-  const [amount, setAmount] = useState(null);
+  const [amount, setAmount] = useState(0);
+
+  const [contributePercentage, setContributePercentage] = useState(0);
+  const [totalDonation, setTotalDonation] = useState(0);
+  const [adminFee, setAdminFee] = useState(0);
 
   const handleAmount = (value) => {
-    console.log(value);
-    // amount.current.value = value;
+    console.log(value, "value");
     setAmount(value);
-    console.log(amount);
+    console.log(amount, "amount");
+    setTotalDonation(value);
   };
 
   const handleIsAccept = (value) => {
@@ -24,6 +28,15 @@ function DonateMonthly() {
 
   const handleContribute = (value) => {
     console.log(value, "hi");
+ 
+    let admFee = (value / 100) * amount;
+    let totalDonation = amount - admFee;
+
+    console.log(admFee, "admFee");
+    console.log(totalDonation, "totalDonation");
+    setAdminFee(admFee);
+    setTotalDonation(totalDonation);
+    setContributePercentage(value);
   };
 
   return (
@@ -36,9 +49,14 @@ function DonateMonthly() {
         <Contribute contribution={handleContribute}></Contribute>
       </main>
       <div className={classes.summary}>
-        <TotalDonation donationAmount={amount} isMonthly={true}></TotalDonation>
+        <TotalDonation
+          donationAmount={amount}
+          isMonthly={true}
+          totalDonation={totalDonation}
+          adminFee={adminFee}
+          contributePercentage={contributePercentage}></TotalDonation>
 
-        <ButtonsPair></ButtonsPair>
+        <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''}></ButtonsPair>
       </div>
     </>
   );

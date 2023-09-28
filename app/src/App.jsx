@@ -248,29 +248,34 @@ import { Routes, Route } from "react-router-dom";
 import SignUpPage from "./Pages/SignupPage";
 
 import MainNavigation from "./Pages/ProfilePage/MainNavigation";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import ProfilePageHome from "./Pages/ProfilePage/ProfilePageHome";
 import ProfilePageHistory from "./Pages/ProfilePage/ProfilePageHistory";
-import ProfilePage from './Pages/ProfilePage/ProfilePage'
+import ProfilePage from "./Pages/ProfilePage/ProfilePage";
+import DonationFormPage from "./Pages/DonationFormPage";
+
 function App() {
-  const currentPath = useLocation();
-  console.log(currentPath.pathname);
+  const currentPath = useLocation().pathname;
+
+  const isProfilePage = currentPath.startsWith("/profile");
+  const showNavigation =
+    currentPath !== "/" &&
+    currentPath !== "/signup" &&
+    !currentPath.includes("/profile/home/donation-form");
+
   return (
     <div>
-     {
-      currentPath.pathname!=='/' && currentPath.pathname!=='/signup' ? <MainNavigation></MainNavigation> : null
-     }
+      {showNavigation && isProfilePage && <MainNavigation />}
       <Routes>
-        <Route path="/" element={<LandingPage></LandingPage>}>
-          {" "}
-        </Route>
-        <Route path="/signup" element={<SignUpPage></SignUpPage>}>
-          {" "}
-        </Route>
-        
-        <Route path="/profile/home" element={<ProfilePageHome></ProfilePageHome>}></Route>
-        <Route path="/profile/history" element={<ProfilePageHistory></ProfilePageHistory>}></Route>
-        <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/profile/home" element={<ProfilePageHome />} />
+        <Route path="/profile/history" element={<ProfilePageHistory />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/profile/home/donation-form"
+          element={<DonationFormPage />}
+        />
       </Routes>
     </div>
   );

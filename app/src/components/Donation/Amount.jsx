@@ -19,7 +19,7 @@ function Amount(props) {
         <p>Algorand</p>
         <input
         // dir="rtl"
-          type="text"
+          type="number"
           placeholder="ALGO"
           ref={amount}
           onChange={handleInputChange}

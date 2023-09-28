@@ -35,7 +35,7 @@ function Contribute(props) {
         ))}
       
       </div>
-      <input type="text" placeholder="Enter an amount" ref={inputAmount} onChange={handleInput}/>
+      <input type="number" placeholder="Enter a percentage" ref={inputAmount} onChange={handleInput}/>
 
       <p>Your donation will help the team maintain the service</p>
     </section>

@@ -1,12 +1,20 @@
 import classes from "../../style/ButtonsPair.module.css";
 
-function ButtonsPair() {
+function ButtonsPair(props) {
+
+  const {isActive} = props
+
+  const handleCancel= ()=>{
+    window.location.reload();
+  }
+  
   return (
     <section className={classes.buttons}>
-      <button type="button" className={`btn ${classes.secondary_btn}`}>
+      <button type="button" className={`btn ${classes.secondary_btn} ${isActive}` }
+      onClick={handleCancel}>
         Cancel
       </button>
-      <button type="button" className={`btn  ${classes.primary_btn}`}>
+      <button type="button" className={`btn  ${classes.primary_btn} ${isActive}`}>
         Transfer Now
       </button>
     </section>
