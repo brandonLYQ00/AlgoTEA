@@ -38,7 +38,7 @@ function PersonalInfo() {
           </i>
 
           <div className={`${classes.personalInfoCard}`}>
-            <div className="card-body">
+            <div className="">
               <h2>Personal Information</h2>
               <p>University Name</p>
 

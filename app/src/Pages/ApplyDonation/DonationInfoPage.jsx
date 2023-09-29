@@ -50,12 +50,7 @@ function DonationInfo() {
         <i className="fa-solid fa-chevron-left" onClick={handleBack}>
           {" "}
           Back
-          <div className={classes.honest}>
-            <strong>Your spending will be tracked and verified.</strong>
-            <p className={classes.disclaimer}>
-              please enter an honest amount to avoid losing donor's trust
-            </p>
-          </div>
+       
         </i>
 
         <div className={classes.request_card}>
