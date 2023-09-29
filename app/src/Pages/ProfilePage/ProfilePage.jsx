@@ -3,12 +3,13 @@ import classes from "../../style/ProfilePage.module.css";
 import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    const handleSignOut = ()=>{
-        navigate('/',{replace:true})
-    }
+  const handleSignOut = () => {
+    // window.location.reload();
+    navigate("/", { replace: true });
+    window.location.reload();
+  };
 
   return (
     <div className={classes.main}>
@@ -29,17 +30,19 @@ function ProfilePage() {
           <p>+6012983231</p>
         </div>
 
-       <div className={classes.icons}>
-       <i class="fa-regular fa-file fa-xl"> </i>
-        <p>Privacy Policy</p>
-       </div>
-       <div className={classes.icons}>
-       <i class="fa-solid fa-circle-info fa-xl"></i>
-        <p>About Us</p>
-       </div>
+        <div className={classes.icons}>
+          <i class="fa-regular fa-file fa-xl"> </i>
+          <p>Privacy Policy</p>
+        </div>
+        <div className={classes.icons}>
+          <i class="fa-solid fa-circle-info fa-xl"></i>
+          <p>About Us</p>
+        </div>
 
         <div className={classes.profile_button}>
-          <button onClick={handleSignOut}><p>Sign out</p></button>
+          <button onClick={handleSignOut}>
+            <p>Sign out</p>
+          </button>
         </div>
       </section>
     </div>
