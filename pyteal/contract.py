@@ -1,15 +1,14 @@
 #contract.py
 # This file based on the counter app from the Algorand documentation - https://developer.algorand.org/docs/get-details/dapps/pyteal/#final-product
 from pyteal import *
-"""Modified Counter Application"""
 
 def approval_program():
     handle_creation = Seq([
-        If(App.globalGet(Bytes("Amount")) == Int(0)).Then(
-            App.globalPut(Bytes("Amount"), Int(0))  # Set "Amount" to 0 if it's 0
+        If(App.globalGet(Bytes("Requests")) == Int(0)).Then(
+            App.globalPut(Bytes("Requests"), Int(0))  # Set "Requests" to 0 if it's 0
         ).Else(
-            # Set "Amount" to its current value if it's not 0
-            App.globalPut(Bytes("Amount"), App.globalGet(Bytes("Amount")))
+            # Set "Requests" to its current value if it's not 0
+            App.globalPut(Bytes("Requests"), App.globalGet(Bytes("Requests")))
         ),
         Return(Int(1))
     ])
@@ -20,37 +19,38 @@ def approval_program():
     handle_deleteapp = Return(Int(0))
     scratchAmount = ScratchVar(TealType.uint64)
     localAmount = ScratchVar(TealType.uint64)
+    amount = Btoi(Txn.application_args[1])
+    # Receive donation from donors
     add_donation = Seq([
-        scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        App.globalPut(Bytes("Amount"), scratchAmount.load() + Btoi(Txn.application_args[1])),
+        scratchAmount.store(App.globalGet(Bytes("Requests"))),
+        App.globalPut(Bytes("Requests"), scratchAmount.load() + Int(1)),
         Return(Int(1))
     ])
     
-
+    # Give out donation to students
     deduct_donation = Seq([
         InnerTxnBuilder.Begin(),
         InnerTxnBuilder.SetFields(
             {
                 TxnField.type_enum: TxnType.Payment,
-                TxnField.amount: Mul(Btoi(Txn.application_args[1])*Int(1000000)),
+                TxnField.amount: Mul(amount*Int(1000000)),
                 TxnField.receiver: Txn.sender(),
             }
         ),
         InnerTxnBuilder.Submit(),
-        scratchAmount.store(App.globalGet(Bytes("Amount"))),
-        App.globalPut(Bytes("Amount"), scratchAmount.load() - Btoi(Txn.application_args[1])),
+        scratchAmount.store(App.globalGet(Bytes("Requests"))),
+        App.globalPut(Bytes("Requests"), scratchAmount.load() - 1),
         Return(Int(1))
     ])
-
-    add_local = Seq([
-        localAmount.store(App.localGet(Txn.sender(), Bytes("Amount"))),
-        App.localPut(Txn.sender(), Bytes("Amount"), localAmount.load() + Btoi(Txn.application_args[1])),
+    # Add student id and request
+    add_student_id = Seq([
+        App.localPut(Txn.sender(), Bytes("Student ID"), Txn.application_args[2]),
+        App.localPut(Txn.sender(), Bytes("Request Status"), Int(0)),
         Return(Int(1))
     ])
-
-    deduct_local = Seq([
-        localAmount.store(App.localGet(Txn.sender(), Bytes("Amount"))),
-        App.localPut(Txn.sender(), Bytes("Amount"), localAmount.load() - Btoi(Txn.application_args[1])),
+    # Approve request and send algos
+    approve_request = Seq([
+        App.localPut(Txn.receiver(), Bytes("Request Status"), Int(1)),
         Return(Int(1))
     ])
 
@@ -61,8 +61,8 @@ def approval_program():
         Cond(
             [Txn.application_args[0] == Bytes("Add_Donation"), add_donation], 
             [Txn.application_args[0] == Bytes("Deduct_Donation"), deduct_donation],
-            [Txn.application_args[0] == Bytes("Add_Local"), add_local], 
-            [Txn.application_args[0] == Bytes("Deduct_Local"), deduct_local]
+            [Txn.application_args[0] == Bytes("Add_Student_Id"), add_student_id], 
+            [Txn.application_args[0] == Bytes("Approve_Request"), approve_request]
         )
     )
 
