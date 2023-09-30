@@ -1,0 +1,89 @@
+.main{
+    /* background-color: aqua; */
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.profile_card{
+
+    padding: 20px;
+    /* background-color: bisque; */
+    /* width: 40%; */
+    display: flex;
+    flex-direction: column;
+    min-height: 65%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 30%;
+}
+
+.profile_card h2{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.info{
+    /* background-color: blueviolet; */
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.icons{
+    /* background-color: aqua; */
+    width: 50%;
+    display: flex;
+    
+    margin: 5px;
+    align-items: center;
+    height: 60px;
+    padding: 10px 0;
+}
+
+.icons i{
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.icons p{
+    padding: 10px 0;
+}
+
+.profile_button{
+    /* background-color: aqua; */
+    padding-top: 20px 0;
+    /* margin-top:60px ; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+
+}
+
+.profile_button button{
+    width: 70%;
+    height: 100%;
+    border-radius: 10px;
+    border :2px solid red;
+    color: red;
+
+}
+
+.profile_button button p{
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.profile_button button:hover{
+    color: white;
+    background-color: red;
+}

@@ -26,6 +26,10 @@
   
     
 }
+.logoClm img{
+    width: 170px;
+    height: auto;
+}
 
 .logoName {
     display: flex;
