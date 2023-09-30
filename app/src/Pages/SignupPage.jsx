@@ -27,12 +27,12 @@ function SignUpPage() {
           <h3>Building one future leader at a time</h3>
           <form action="">
             <div >
-              <label for="exampleFormControlInput1" class="form-label" >
+              <label htmlFor="exampleFormControlInput1" className="form-label" >
                First Name
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleFormControlInput1"
                 // placeholder="name@example.com"
 
@@ -40,34 +40,34 @@ function SignUpPage() {
             </div>
 
             <div >
-              <label for="exampleFormControlInput1" class="form-label">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
                Last Name
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleFormControlInput1"
                 // placeholder="name@example.com"
               />
             </div>
             <div >
-              <label for="exampleFormControlInput1" class="form-label">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
                 Email address
               </label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleFormControlInput1"
                 // placeholder="name@example.com"
               />
             </div>
             <div >
-              <label for="exampleFormControlInput1" class="form-label">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
                 Phone Number 
               </label>
               <input
                 type="tel"
-                class="form-control"
+                className="form-control"
                 id="exampleFormControlInput1"
                 placeholder="+60-0125986653"
 
@@ -75,7 +75,7 @@ function SignUpPage() {
             </div>
             <div className={classes.button}>
           <Link to={'/profile/home'}>
-          <button type="button" class="btn" >
+          <button type="button" className="btn" >
               SignUp Now
             </button></Link>
             <div>

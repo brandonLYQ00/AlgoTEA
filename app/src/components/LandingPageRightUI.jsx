@@ -42,7 +42,7 @@ function LandingPageRight() {
 
             <div className={classes.button}>
               <Link to={"/signup"}>
-                <button type="button" class="btn">
+                <button type="button" className="btn">
                   SignUp Now
                 </button>
               </Link>

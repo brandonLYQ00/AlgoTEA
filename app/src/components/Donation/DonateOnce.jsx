@@ -8,7 +8,7 @@ import ButtonsPair from "./ButtonsPair";
 import { useState } from "react";
 
 
-function DonateOnce() {
+function DonateOnce(props) {
   const [amount, setAmount] = useState(0);
 
   const [contributePercentage, setContributePercentage] = useState(0);
@@ -38,7 +38,7 @@ function DonateOnce() {
     setTotalDonation(totalDonation);
     setContributePercentage(value);
   };
-
+  
   return (
     <>
       <main className={classes.main}>
@@ -56,7 +56,7 @@ function DonateOnce() {
           adminFee={adminFee}
           contributePercentage={contributePercentage}></TotalDonation>
 
-        <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''}></ButtonsPair>
+        <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''} callApplication={props.callApplication} amount={amount}></ButtonsPair>
       </div>
     </>
   );

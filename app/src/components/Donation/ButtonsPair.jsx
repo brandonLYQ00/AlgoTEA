@@ -14,7 +14,7 @@ function ButtonsPair(props) {
       onClick={handleCancel}>
         Cancel
       </button>
-      <button type="button" className={`btn  ${classes.primary_btn} ${isActive}`}>
+      <button type="button" className={`btn  ${classes.primary_btn} ${isActive}`} onClick={props.callApplication}>
         Transfer Now
       </button>
     </section>
