@@ -4,6 +4,8 @@ import LandingPageRight from "./LandingPageRightUI";
 
 import classes from "../style/LandingPageLeft.module.css";
 
+import Logo from '../Assets/logo.png'
+
 
 function LandingLeft() {
   return (
@@ -11,8 +13,9 @@ function LandingLeft() {
       <main className={classes.main}>
         <div className={classes.left}>
           <div className={classes.logoClm}>
-            <div className={classes.logoName} style={{ height: "5rem" }}>
-              AlgoTEA
+            <div className={classes.logoName} >
+              <img src={Logo} alt="" />
+              {/* AlgoTEA */}
               {/* <img src={Logo} alt="" />
               <img src={LogoName} alt="logoName" className={classes.algotea} /> */}
             </div>
