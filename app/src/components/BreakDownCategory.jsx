@@ -14,7 +14,7 @@ function Category(props) {
         {props.children}
         <div className={classes.category_details}>
           <p>{desc}</p>
-          <p className={classes.amount}>RM {amount}</p>
+          <p className={classes.amount}>{amount} Algos</p>
         </div>
       </div>
     </>

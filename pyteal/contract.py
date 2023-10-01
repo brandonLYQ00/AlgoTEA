@@ -17,52 +17,32 @@ def approval_program():
     handle_closeout = Return(Int(0))
     handle_updateapp = Return(Int(0))
     handle_deleteapp = Return(Int(0))
-    scratchAmount = ScratchVar(TealType.uint64)
-    localAmount = ScratchVar(TealType.uint64)
-    amount = Btoi(Txn.application_args[1])
-    # Receive donation from donors
-    add_donation = Seq([
-        scratchAmount.store(App.globalGet(Bytes("Requests"))),
-        App.globalPut(Bytes("Requests"), scratchAmount.load() + Int(1)),
-        Return(Int(1))
-    ])
-    
-    # Give out donation to students
-    deduct_donation = Seq([
-        InnerTxnBuilder.Begin(),
-        InnerTxnBuilder.SetFields(
-            {
-                TxnField.type_enum: TxnType.Payment,
-                TxnField.amount: Mul(amount*Int(1000000)),
-                TxnField.receiver: Txn.sender(),
-            }
-        ),
-        InnerTxnBuilder.Submit(),
-        scratchAmount.store(App.globalGet(Bytes("Requests"))),
-        App.globalPut(Bytes("Requests"), scratchAmount.load() - 1),
-        Return(Int(1))
-    ])
-    # Add student id and request
-    add_student_id = Seq([
+    # scratchAmount = ScratchVar(TealType.uint64)
+    # localAmount = ScratchVar(TealType.uint64)
+    # Apply for donation
+    apply = Seq([
+        Assert(Txn.application_args.length() == Int(4)),
+        App.globalPut(Bytes("Requests"), App.globalGet(Bytes("Requests")) + Int(1)),
+        App.localPut(Txn.sender(), Bytes("Institute"), Txn.application_args[1]),
         App.localPut(Txn.sender(), Bytes("Student ID"), Txn.application_args[2]),
-        App.localPut(Txn.sender(), Bytes("Request Status"), Int(0)),
+        App.localPut(Txn.sender(), Bytes("Donation Requested"), Mul(Btoi(Txn.application_args[3]),Int(1000000))),
+        App.localPut(Txn.sender(), Bytes("Donation Received"), Int(0)),
         Return(Int(1))
     ])
-    # Approve request and send algos
-    approve_request = Seq([
-        App.localPut(Txn.receiver(), Bytes("Request Status"), Int(1)),
-        Return(Int(1))
-    ])
+    # # Send donation
+    # donate = Seq([
+    #     App.localPut(Txn.receiver(), Bytes("Donation Requested"), App.localGet(Txn.receiver(), Bytes("Donation Requested")) -  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
+    #     App.localPut(Txn.receiver(), Bytes("Donation Received"), App.localGet(Txn.receiver(), Bytes("Donation Received")) -  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
+    #     Return(Int(1))
+    # ])
+    
 
     
 
     handle_noop = Seq(
-        Assert(Global.group_size() == Int(1)), 
         Cond(
-            [Txn.application_args[0] == Bytes("Add_Donation"), add_donation], 
-            [Txn.application_args[0] == Bytes("Deduct_Donation"), deduct_donation],
-            [Txn.application_args[0] == Bytes("Add_Student_Id"), add_student_id], 
-            [Txn.application_args[0] == Bytes("Approve_Request"), approve_request]
+            [Txn.application_args[0] == Bytes("Apply"), apply],
+            [Txn.application_args[0] == Bytes("Donate"), donate]
         )
     )
 

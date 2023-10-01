@@ -32,7 +32,7 @@ function ApplicationOverview() {
           <div className={`card ${classes.approval_process}`}>
             <div className={`card-body`}>
               <h3>Approval Process</h3>
-              <p>1. You shall receive a response between 1-4 working days.</p>
+              <p>1. You shall receive a response between 1-4 working days depending on the university.</p>
 
               <p>
                 2. You will be contacted through your email if your application

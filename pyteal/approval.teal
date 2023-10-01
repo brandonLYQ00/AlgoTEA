@@ -2,140 +2,122 @@
 txn ApplicationID
 int 0
 ==
-bnz main_l20
+bnz main_l16
 txn OnCompletion
 int OptIn
 ==
-bnz main_l19
+bnz main_l15
 txn OnCompletion
 int CloseOut
 ==
-bnz main_l18
+bnz main_l14
 txn OnCompletion
 int UpdateApplication
 ==
-bnz main_l17
+bnz main_l13
 txn OnCompletion
 int DeleteApplication
 ==
-bnz main_l16
+bnz main_l12
 txn OnCompletion
 int NoOp
 ==
 bnz main_l7
 err
 main_l7:
-global GroupSize
-int 1
-==
-assert
 txna ApplicationArgs 0
-byte "Add_Donation"
+byte "Apply"
 ==
-bnz main_l15
+bnz main_l11
 txna ApplicationArgs 0
-byte "Deduct_Donation"
+byte "Donate"
 ==
-bnz main_l14
-txna ApplicationArgs 0
-byte "Add_Local"
-==
-bnz main_l13
-txna ApplicationArgs 0
-byte "Deduct_Local"
-==
-bnz main_l12
+bnz main_l10
 err
-main_l12:
-txn Sender
-byte "Amount"
+main_l10:
+txn Receiver
+byte "Donation Requested"
+txn Receiver
+byte "Donation Requested"
 app_local_get
-store 1
-txn Sender
-byte "Amount"
-load 1
-txna ApplicationArgs 1
-btoi
--
-app_local_put
-int 1
-return
-main_l13:
-txn Sender
-byte "Amount"
-app_local_get
-store 1
-txn Sender
-byte "Amount"
-load 1
-txna ApplicationArgs 1
-btoi
-+
-app_local_put
-int 1
-return
-main_l14:
-itxn_begin
-int pay
-itxn_field TypeEnum
 txna ApplicationArgs 1
 btoi
 int 1000000
 *
-itxn_field Amount
-txn Sender
-itxn_field Receiver
-itxn_submit
-byte "Amount"
-app_global_get
-store 0
-byte "Amount"
-load 0
+-
+app_local_put
+txn Receiver
+byte "Donation Received"
+txn Receiver
+byte "Donation Received"
+app_local_get
 txna ApplicationArgs 1
 btoi
+int 1000000
+*
 -
-app_global_put
+app_local_put
 int 1
 return
-main_l15:
-byte "Amount"
+main_l11:
+txn NumAppArgs
+int 4
+==
+assert
+byte "Requests"
+byte "Requests"
 app_global_get
-store 0
-byte "Amount"
-load 0
-txna ApplicationArgs 1
-btoi
+int 1
 +
 app_global_put
+txn Sender
+byte "Institute"
+txna ApplicationArgs 1
+app_local_put
+txn Sender
+byte "Student ID"
+txna ApplicationArgs 2
+app_local_put
+txn Sender
+byte "Donation Requested"
+txna ApplicationArgs 3
+btoi
+int 1000000
+*
+app_local_put
+txn Sender
+byte "Donation Received"
+int 0
+app_local_put
+int 1
+return
+main_l12:
+int 0
+return
+main_l13:
+int 0
+return
+main_l14:
+int 0
+return
+main_l15:
 int 1
 return
 main_l16:
-int 0
-return
-main_l17:
-int 0
-return
-main_l18:
-int 0
-return
-main_l19:
-int 1
-return
-main_l20:
-byte "Amount"
+byte "Requests"
 app_global_get
 int 0
 ==
-bnz main_l23
-byte "Amount"
-byte "Amount"
+bnz main_l19
+byte "Requests"
+byte "Requests"
 app_global_get
 app_global_put
-main_l22:
+main_l18:
 int 1
 return
-main_l23:
-byte "Amount"
+main_l19:
+byte "Requests"
 int 0
 app_global_put
-b main_l22
+b main_l18

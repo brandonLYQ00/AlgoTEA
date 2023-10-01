@@ -9,12 +9,25 @@
     
 }
 
+.options{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.button button:hover {
+    background-color: #6ffcd2;
+  }
+
 .PersonalInfoForm{
     display: flex;
 }
 
 .personalInfoCard{
-
+    margin-top: 300px;
     padding: 20px;
     /* background-color: aqua; */
     width: 35rem;

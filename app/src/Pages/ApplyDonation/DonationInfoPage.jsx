@@ -21,7 +21,7 @@ function DonationInfo() {
     setOtherExpenses(e.target.value);
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     // Calculate the total
     const total =
       parseFloat(collegeFee) +
@@ -34,6 +34,7 @@ function DonationInfo() {
     } else {
       // All input fields are filled
       console.log("Total Request:", total);
+      // await callApplication('donate',total);
 
       // You can navigate to the next page here if needed
        navigate('/apply-donation/success');

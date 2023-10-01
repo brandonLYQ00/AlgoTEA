@@ -16,24 +16,16 @@ function DonateOnce(props) {
   const [adminFee, setAdminFee] = useState(0);
 
   const handleAmount = (value) => {
-    console.log(value, "value");
     setAmount(value);
-    console.log(amount, "amount");
     setTotalDonation(value);
   };
 
   const handleIsAccept = (value) => {
-    console.log(value);
   };
 
-  const handleContribute = (value) => {
-    console.log(value, "hi");
- 
+  const handleContribute = (value) => { 
     let admFee = (value / 100) * amount;
     let totalDonation = amount - admFee;
-
-    console.log(admFee, "admFee");
-    console.log(totalDonation, "totalDonation");
     setAdminFee(admFee);
     setTotalDonation(totalDonation);
     setContributePercentage(value);
@@ -56,7 +48,9 @@ function DonateOnce(props) {
           adminFee={adminFee}
           contributePercentage={contributePercentage}></TotalDonation>
 
-        <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''} callApplication={props.callApplication} amount={amount}></ButtonsPair>
+        <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''} callApplication={async ()=>{
+          await props.callApplication('', amount);
+          }}></ButtonsPair>
       </div>
     </>
   );

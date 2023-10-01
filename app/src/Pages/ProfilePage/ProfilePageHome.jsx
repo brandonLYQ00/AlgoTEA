@@ -1,13 +1,16 @@
+import React from 'react';
 import classes from "../../style/HomePage.module.css";
 import HomeCard from "../../components/HomeCard";
+import Students from "../../db.json";
+
 
 function ProfilePageHome() {
   return (
     <main className={classes.main}>
-      <HomeCard></HomeCard>
-      <HomeCard></HomeCard>
-      <HomeCard></HomeCard>
-      <HomeCard></HomeCard>
+      {Students && Students.map((student, index) => {
+        return(<HomeCard student={student} key={student.student_id} ></HomeCard>)
+      })
+      }
     </main>
   );
 }
