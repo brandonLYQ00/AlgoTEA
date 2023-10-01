@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "../../style/MainNavigation.module.css";
 import Logo from '../../assets/logo.png'
 
@@ -6,29 +6,29 @@ function MainNavigation() {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <Link to={"/profile/home"}>
+        <NavLink to="/profile/home">
           <img src={Logo} alt="" href="/profile/home"/>
-        </Link>
+        </NavLink>
       </div>
       
       <nav>
         <ul>
           <li>
-            <Link to={"/profile/home"}>Home</Link>
+            <NavLink to="/profile/home" activeClassName="active">Home</NavLink>
           </li>
           <li>
-            <Link to={"/profile/history"} style={{ color: "black" }}>Donation History</Link>
+            <NavLink to="/profile/history" style={{ color: "black" }}>Donation History</NavLink>
           </li>
           <li>
-            <Link to={"/profile"} style={{ color: "black" }}>Profile</Link>
+            <NavLink to={"/profile"} style={{ color: "black" }}>Profile</NavLink>
           </li>
         </ul>
 
         <ul>
           <li>
-            <Link to={'/apply-donation/overview'}>
+            <NavLink to={'/apply-donation/overview'}>
               <button><p>Apply for Donation</p></button>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
