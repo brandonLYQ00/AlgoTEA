@@ -243,20 +243,20 @@
 
 // export default App;
 import React from "react";
-import LandingPage from "./Pages/LandingPage";
+import LandingPage from "./pages/LandingPage";
 import { Routes, Route } from "react-router-dom";
-import SignUpPage from "./Pages/SignupPage";
+import SignUpPage from "./pages/SignupPage";
 
-import MainNavigation from "./Pages/ProfilePage/MainNavigation";
+import MainNavigation from "./pages/userProfile/MainNavigation";
 import { useLocation } from "react-router-dom";
-import ProfilePageHome from "./Pages/ProfilePage/ProfilePageHome";
-import ProfilePageHistory from "./Pages/ProfilePage/ProfilePageHistory";
-import ProfilePage from "./Pages/ProfilePage/ProfilePage";
-import DonationFormPage from "./Pages/DonationFormPage";
-import ApplicationOverview from "./Pages/ApplyDonation/OverviewPage";
-import PersonalInfo from "./Pages/ApplyDonation/PersonalInfoPage";
-import DonationInfo from "./Pages/ApplyDonation/DonationInfoPage";
-import SuccessPage from "./Pages/ApplyDonation/SuccessPage";
+import ProfilePageHome from "./pages/userProfile/ProfilePageHome";
+import ProfilePageHistory from "./pages/userProfile/ProfilePageHistory";
+import ProfilePage from "./pages/userProfile/ProfilePage";
+import DonationFormPage from "./pages/DonationFormPage";
+import ApplicationOverview from "./pages/applyDonation/OverviewPage";
+import PersonalInfo from "./pages/applyDonation/PersonalInfoPage";
+import DonationInfo from "./pages/applyDonation/DonationInfoPage";
+import SuccessPage from "./pages/applyDonation/SuccessPage";
 
 function App() {
   const currentPath = useLocation().pathname;

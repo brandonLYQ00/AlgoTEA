@@ -16,9 +16,11 @@ function LandingPageRight() {
             <h1>Support Our</h1>
             <h1 className={classes.subtitle}>Future Leaders</h1>
           </div>
+          
           <div className={classes.smallTitleOne}>
             <h3> Building one future leader at a time</h3>
           </div>
+          
           <div className={classes.smallTitleTwo}>
             <h3>Secure your donation with blockchain technology</h3>
             <h3>Secure your donation with blockchain technology</h3>

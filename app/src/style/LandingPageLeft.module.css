@@ -1,5 +1,3 @@
-
-
 .main{
     /* background-color: brown; */
     width: 100vw;
@@ -18,17 +16,16 @@
 .logoClm{
     /* background-color: blanchedalmond; */
     height: auto;
-    width:45%;
+    width: 45%;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  
-    
 }
 .logoClm img{
     width: 170px;
     height: auto;
+    margin-left: 10%;
 }
 
 .logoName {
@@ -47,22 +44,17 @@
 
 .box{
     /* background-color: yellow; */
+    font-size: 16px;
     height: auto;
-    padding: 10px;
+    padding: 25px;
+    margin-bottom: 0px;
     text-align: left;
-   
+    background-color: aqua;
 }
-
-
-
-
-
-
-
-
-
-
-
+.box .footnote{
+    text-align: "center"; 
+    font-size: "10px"; 
+}
 
 /* .bubble {
     margin: 0px;
@@ -75,8 +67,6 @@
     opacity: 0.6;
 
 } */
-
-
 
 /* @keyframes bubbleAnimation {
     0% {

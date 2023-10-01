@@ -7,54 +7,50 @@
       justify-content: space-between;
       flex-direction: column;
       width: 65vw;
-      padding-left: 40px;
-     
-  
-  }
+      padding-left: 40px;  
+}
 
-  .title{
+.title{
     color: #000;
-font-feature-settings: 'clig' off, 'liga' off;
-font-family: Inter;
-font-size: 64px;
-font-style: normal;
-font-weight: 400;
-line-height: 130%; 
-width: 543px;
-margin-top: 3rem;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; 
+    width: 543px;
+    margin-top: 3rem;
 }
 
 .subtitle{
     color: #0090BD;
-font-feature-settings: 'clig' off, 'liga' off;
-font-family: Inter;
-font-size: 64px;
-font-style: normal;
-font-weight: 600;
-line-height: 130%; /* 83.2px */
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 130%; /* 83.2px */
 }
 
 .smallTitleOne{
-    margin-bottom: 5rem;
-   
+    margin-bottom: 5rem; 
 }
 
 .smallTitleTwo{
     margin-bottom: 5rem;
-    
 }
   
-  .content{
-      margin-top: 3rem;
-  }
+.content{
+    margin-top: 3rem;
+}
   
-  .sponsorsSignup{
-      /* background-color: burlywood; */
-      display: flex;
-      justify-content: space-between;
-      margin-right: 30px;
-      margin-bottom: 30px;
-  }
+.sponsorsSignup{
+    /* background-color: burlywood; */
+    display: flex;
+    justify-content: space-between;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
 
 .sponsors img{
     height: 2.5rem;
@@ -68,9 +64,7 @@ line-height: 130%; /* 83.2px */
 
 .sponsors p{
     font-size: 17px;
-    text-align: center;
-    
-    
+    text-align: center; 
 }
 
 .button button{

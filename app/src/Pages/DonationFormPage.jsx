@@ -1,11 +1,7 @@
-
-
 import { useState } from "react";
 import classes from "../style/Donation.module.css";
-import DonateMonthly from "../components/Donation/DonateMonthly";
-import DonateOnce from "../components/Donation/DonateOnce";
-
-
+import DonateMonthly from "../components/donation/DonateMonthly";
+import DonateOnce from "../components/donation/DonateOnce";
 
 function DonationFormPage() {
     const [isMonthlySelected, setMonthlySelected] = useState(true);
@@ -33,6 +29,9 @@ function DonationFormPage() {
       <>
         <main className={`${classes.main}`}>
           <div className={`card ${classes.card_measure}`}>
+            <div className={classes.student}>
+              Student N
+            </div>
             <div className={`card-body ${classes.card_body_props}`}>
               <div className={`${classes.options}`}>
                 <div className={classes.button} onClick={handleMonthly}>
