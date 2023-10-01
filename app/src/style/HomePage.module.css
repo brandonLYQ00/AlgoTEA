@@ -6,6 +6,14 @@
   /* background-color: aqua; */
 }
 
+.title{
+  font-size: 30px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-left: 35px;
+}
+
 /* card */
 .donation_card {
   border-radius: 10px;

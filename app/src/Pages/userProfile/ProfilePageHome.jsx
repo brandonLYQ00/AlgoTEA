@@ -3,11 +3,16 @@ import HomeCard from "../../components/HomeCard";
 
 function ProfilePageHome() {
   return (
-    <main className={classes.main}>
+    <main>
+      <div className={classes.title}>
+        Donation Requests
+      </div>
+      <div className={classes.main}>
       <HomeCard></HomeCard>
       <HomeCard></HomeCard>
       <HomeCard></HomeCard>
       <HomeCard></HomeCard>
+      </div>
     </main>
   );
 }
