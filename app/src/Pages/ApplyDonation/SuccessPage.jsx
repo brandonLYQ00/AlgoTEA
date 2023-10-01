@@ -1,6 +1,6 @@
 import classes from "../../style/SuccessPage.module.css";
 
-import success from "../../Assets/success.png";
+import success from "../../assets/success.png";
 
 import { useNavigate } from "react-router-dom";
 

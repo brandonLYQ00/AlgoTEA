@@ -1,11 +1,17 @@
 .main {
-    
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 20px;
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-evenly; */
   /* background-color: aqua; */
+}
+
+.title{
+  font-size: 30px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-left: 35px;
 }
 
 /* card */

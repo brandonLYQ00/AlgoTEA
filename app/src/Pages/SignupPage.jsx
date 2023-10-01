@@ -1,6 +1,6 @@
 import classes from "../style/SignupPage.module.css";
-import Logo from'../Assets/logo-1.png'
-import LogoName from '../Assets/logo-name.png'
+import Logo from'../assets/logo-1.png'
+import LogoName from '../assets/logo-name.png'
 import { Link } from "react-router-dom";
 
 

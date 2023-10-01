@@ -3,30 +3,31 @@
 .header {
   /* background-color: aqua; */
   width: 100%;
-  height: 5 rem;
+  height: 100%;
   display: flex;
   align-items: center;
-  /* background-color: #77002e; */
   /* justify-content: left; */
-  padding: 0 10%;
+  padding: 0 50px;
   margin-top: 30px;
+  margin-bottom: 10px;
   font-feature-settings: "clig" off, "liga" off;
+  flex-grow: 0;
 }
 
 .logo {
-  font-size: 2rem;
   display: flex;
-  gap: 1.5rem;
   align-items: center;
-  color: #ece1fa;
-  font-weight: bold;
-  margin-right: 5rem;
+}
+.logo img{
+  width: 130px;
 }
 
 .header nav {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-left: 70px;
 }
 
 .header ul {
@@ -34,7 +35,7 @@
   display: flex;
   align-items: baseline;
   margin: 0;
-  padding: 0;
+  padding: 10px 15px;
 }
 
 .header li {
@@ -44,18 +45,16 @@
 
 .header button{
   background-color:white;
-  width: 150%;
-  height: 50px;
+  width: 140%;
+  height: 40px;
   border-radius: 10px;
   /* border-color: #6FFCD2 ; */
-  border: 2px solid #6FFCD2 ;
+  border: 3px solid #6FFCD2;
 }
 
 .header button p{
   margin: 0px;
   font-weight: bold;
-  
-
 }
 
 .header button:hover{

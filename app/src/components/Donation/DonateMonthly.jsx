@@ -55,7 +55,6 @@ function DonateMonthly() {
           totalDonation={totalDonation}
           adminFee={adminFee}
           contributePercentage={contributePercentage}></TotalDonation>
-
         <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''}></ButtonsPair>
       </div>
     </>

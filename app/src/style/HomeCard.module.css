@@ -1,109 +1,88 @@
 /* card */
 .donation_card {
-    margin: 20px;
-    border-radius: 10px;
-    /* padding: 10px; */
-    width: 45%;
-    /* background-color: yellow; */
-    display: flex;
-    min-height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-  }
+  margin: 15px;
+  border-radius: 10px;
+  /* padding: 10px; */
+  width: 46%;
+  /* background-color: yellow; */
+  display: flex;
+  min-height: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
   
-  .donation_card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  .request_box {
-    border-radius: 10px 0px 0px 10px;
-    padding: 10px;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: black;
-    color: white;
-    overflow: scroll;
-  }
-  
-  .primary_btn {
-    background-color: #6ffcd2;
-    color: black;
-    margin-left: 20px;
-    width: 160px;
-    border-radius: 10px;
-  }
-  .primary_btn:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .details {
-    padding: 10px;
-    width: 70%;
-    /* background-color: green; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .details h2 {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-  
-  .catagories {
-    display: flex;
-    /* background-color: aquamarine; */
-    flex-wrap: wrap;
-  }
-  
-  .category {
-    /* background-color: blue; */
-    display: flex;
-    width: 50%;
-    justify-content: space-evenly;
-  }
-  .category p {
-    margin: 0px;
-    color: #000;
-    font-feature-settings: "clig" off, "liga" off;
-    font-family: Inter;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%; /* 15.6px */
-  }
-  
-  .category .amount {
-    color: #000;
-    font-feature-settings: "clig" off, "liga" off;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 130%;
-  }
-  
-  .category img {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .donation_needed {
-    /* background-color: aqua; */
-    text-align: right;
-  
-    padding-right: 20px;
-  }
-  
-  .donation_needed h2 {
-    color: #0090bd;
-    font-feature-settings: "clig" off, "liga" off;
-    font-family: Inter;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 130%; /* 41.6px */
-  }
+.donation_card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.donation_card h2{
+  font-size: 28px;
+}
+
+.donation_card p{
+  font-size: 14px;
+  margin: 15px 0px;
+}
+
+.request_box {
+  border-radius: 10px 0px 0px 10px;
+  padding: 25px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+
+.primary_btn {
+  background-color: #6ffcd2;
+  color: black;
+  width: 160px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.primary_btn:hover {
+  background-color: white;
+  color: black;
+  outline: 3px solid #6ffcd2;
+}
+
+.details {
+  padding: 10px;
+  width: 70%;
+  /* background-color: green; */
+  display: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.details h4 {
+  margin-top: 15px;
+  font-size: 20px;
+  /* background-color: #6ffcd2; */
+}
+
+.catagories {
+  display: flex;
+  /* background-color: aquamarine; */
+  flex-wrap: wrap;
+}
+
+.donation_needed {
+  height: 20%;
+  /* background-color: aqua; */
+  text-align: left;
+  margin-left: 55%;
+}
+
+.donation_needed h2 {
+  color: #0090bd;
+  /* background-color: cadetblue; */
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+}

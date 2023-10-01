@@ -1,7 +1,7 @@
 import classes from "../style/HomeCard.module.css";
-import grad from "../Assets/graduation-cap.png";
-import others from "../Assets/stationary 1.png";
-import foods from "../Assets/fast-food.png";
+import grad from "../assets/graduation-cap.png";
+import others from "../assets/stationary 1.png";
+import foods from "../assets/fast-food.png";
 import Category from "./BreakDownCategory";
 import { Link } from "react-router-dom";
 
@@ -34,7 +34,7 @@ function HomeCard(props) {
         </section>
 
         <section className={classes.details}>
-          <h2>Budget breakdown</h2>
+          <h4>Budget breakdown</h4>
           <div className={classes.catagories}>
             <Category desc={"College fee"} amount={student.fee_tuition}>
               <img src={grad} alt="" />
@@ -46,6 +46,7 @@ function HomeCard(props) {
               <img src={foods} alt="" />
             </Category>
           </div>
+
           <div className={classes.donation_needed}>
             <h3>Donation needed</h3>
             <h2>{total} Algos</h2>
