@@ -2,23 +2,23 @@
 txn ApplicationID
 int 0
 ==
-bnz main_l16
+bnz main_l14
 txn OnCompletion
 int OptIn
 ==
-bnz main_l15
+bnz main_l13
 txn OnCompletion
 int CloseOut
 ==
-bnz main_l14
+bnz main_l12
 txn OnCompletion
 int UpdateApplication
 ==
-bnz main_l13
+bnz main_l11
 txn OnCompletion
 int DeleteApplication
 ==
-bnz main_l12
+bnz main_l10
 txn OnCompletion
 int NoOp
 ==
@@ -28,38 +28,9 @@ main_l7:
 txna ApplicationArgs 0
 byte "Apply"
 ==
-bnz main_l11
-txna ApplicationArgs 0
-byte "Donate"
-==
-bnz main_l10
+bnz main_l9
 err
-main_l10:
-txn Receiver
-byte "Donation Requested"
-txn Receiver
-byte "Donation Requested"
-app_local_get
-txna ApplicationArgs 1
-btoi
-int 1000000
-*
--
-app_local_put
-txn Receiver
-byte "Donation Received"
-txn Receiver
-byte "Donation Received"
-app_local_get
-txna ApplicationArgs 1
-btoi
-int 1000000
-*
--
-app_local_put
-int 1
-return
-main_l11:
+main_l9:
 txn NumAppArgs
 int 4
 ==
@@ -91,33 +62,33 @@ int 0
 app_local_put
 int 1
 return
+main_l10:
+int 0
+return
+main_l11:
+int 0
+return
 main_l12:
 int 0
 return
 main_l13:
-int 0
-return
-main_l14:
-int 0
-return
-main_l15:
 int 1
 return
-main_l16:
+main_l14:
 byte "Requests"
 app_global_get
 int 0
 ==
-bnz main_l19
+bnz main_l17
 byte "Requests"
 byte "Requests"
 app_global_get
 app_global_put
-main_l18:
+main_l16:
 int 1
 return
-main_l19:
+main_l17:
 byte "Requests"
 int 0
 app_global_put
-b main_l18
+b main_l16

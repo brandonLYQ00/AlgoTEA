@@ -1,7 +1,7 @@
 import classes from "../style/HomeCard.module.css";
-import grad from "../assets/graduation-cap.png";
-import others from "../assets/stationary 1.png";
-import foods from "../assets/fast-food.png";
+import grad from "../Assets/graduation-cap.png";
+import others from "../Assets/stationary 1.png";
+import foods from "../Assets/fast-food.png";
 import Category from "./BreakDownCategory";
 import { Link } from "react-router-dom";
 

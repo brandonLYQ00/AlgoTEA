@@ -33,6 +33,7 @@
   justify-content: space-around;
   background-color: black;
   color: white;
+  overflow: scroll;
   align-items: center;
 }
 
@@ -85,4 +86,11 @@
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
+}
+
+.request_paragraph{
+  font-size: 14px;
+  margin: 15px 0px;
+  width: 200px;
+
 }

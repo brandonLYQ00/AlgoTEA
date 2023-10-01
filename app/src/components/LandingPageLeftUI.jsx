@@ -1,8 +1,8 @@
 import LandingPageRight from "./LandingPageRightUI";
-// import Logo from "../assets/logo-1.png";
-// import LogoName from "../assets/logo-name.png";
+// import Logo from "../Assets/logo-1.png";
+// import LogoName from "../Assets/logo-name.png";
 import classes from "../style/LandingPageLeft.module.css";
-import Logo from '../assets/logo.png'
+import Logo from '../Assets/logo.png'
 
 
 function LandingLeft() {

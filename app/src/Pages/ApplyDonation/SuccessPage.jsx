@@ -1,6 +1,6 @@
 import classes from "../../style/SuccessPage.module.css";
 
-import success from "../../assets/success.png";
+import success from "../../Assets/success.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function SuccessPage() {
       <div className={classes.success}>
         <img src={success} alt="" />
         <h4>Application sent!</h4>
-        <p>Please look out for any notification form us.</p>
+        <p>Please look out for any notification from us.</p>
         <button
           onClick={() => {
             navigate("/profile/home", { replace: true });

@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "../style/BreakDownCategory.module.css";
-import grad from "../assets/graduation-cap.png";
-import others from "../assets/stationary 1.png";
-import foods from "../assets/fast-food.png";
+import grad from "../Assets/graduation-cap.png";
+import others from "../Assets/stationary 1.png";
+import foods from "../Assets/fast-food.png";
 
 function Category(props) {
   const { desc, amount } = props;

@@ -42,7 +42,7 @@ def approval_program():
     handle_noop = Seq(
         Cond(
             [Txn.application_args[0] == Bytes("Apply"), apply],
-            [Txn.application_args[0] == Bytes("Donate"), donate]
+            # [Txn.application_args[0] == Bytes("Donate"), donate]
         )
     )
 
