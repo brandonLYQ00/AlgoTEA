@@ -14,11 +14,11 @@ function HomeCard(props) {
       <div className={`${classes.donation_card} `}>
         <section className={classes.request_box}>
           <div className={classes.request_paragraph}>
-            <h1>Name: {student.name}</h1>
+            <h1>{student.name}</h1>
             <p>
               Student ID: {student.student_id}
             </p>
-            <p>
+            <p className={classes.walletAddress}>
               Wallet Address: {student.address_pera}
             </p>
             <p>

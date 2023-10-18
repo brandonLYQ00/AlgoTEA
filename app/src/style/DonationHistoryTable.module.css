@@ -1,29 +1,31 @@
-.spending h1{
-    padding-left: 10%;
-    margin-top: 20px;
+.spending h1 {
+  padding-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 3rem;
+}
+
+.table {
   
-  }
-  
-  .table {
-    /* background-color: blue; */
-    width: 70%;
-    margin-left: 6%;
-    margin-top: 2%;
-  }
-  
-  .table th {
-    text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 3px solid black;
-  }
-  
-  .table td {
-    text-align: center;
-    padding-top: 30px;
-   
-  }
-  
-  .table .track_spending {
-      cursor: pointer;
-      color: #0090BD ;
-  } 
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+.table th {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 3px solid black;
+}
+
+.table td {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.table .track_spending {
+  cursor: pointer;
+  color: #0090bd;
+}
