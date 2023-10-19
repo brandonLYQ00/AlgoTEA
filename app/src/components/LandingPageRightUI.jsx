@@ -22,9 +22,9 @@ function LandingPageRight() {
           </div>
           
           <div className={classes.smallTitleTwo}>
-            <h3>Secure your donation with blockchain technology</h3>
-            <h3>Secure your donation with blockchain technology</h3>
-            <h3>Secure your donation with blockchain technology</h3>
+            <h3>Secure your donation with Blockchain technology</h3>
+            <h3>Donation Security via Blockchain</h3>
+            <h3>Elevate Giving with Blockchain</h3>
           </div>
 
           <div className={classes.sponsorsSignup}>

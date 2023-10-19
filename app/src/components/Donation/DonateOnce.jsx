@@ -9,6 +9,7 @@ import { useState } from "react";
 
 
 function DonateOnce(props) {
+
   const [amount, setAmount] = useState(0);
 
   const [contributePercentage, setContributePercentage] = useState(0);

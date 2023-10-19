@@ -15,6 +15,10 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
+.walletAddress{
+  word-wrap: break-word;
+}
+
 .donation_card h2{
   font-size: 28px;
 }
@@ -33,7 +37,7 @@
   justify-content: space-around;
   background-color: black;
   color: white;
-  overflow: scroll;
+  /* overflow: scroll; */
   align-items: center;
 }
 
