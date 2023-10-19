@@ -15,7 +15,6 @@ function HomeCard(props) {
   const [ food, setFoodDonation] = useState(0);
   const [ other, setOtherDonation] = useState(0);
   const [ totalDonation, setTotalDonation] = useState(0);
-  const [ totalDonationReceived, setTotalDonationReceived] = useState(0);
   const [ isShown, setIsShown] = useState(false);
   const { student } = props;
   const url=`/profile/home/donation-form/${student.student_id}`;
@@ -60,8 +59,6 @@ function HomeCard(props) {
         <div className={classes.donation_needed}>
           <h3>Donation needed</h3>
           <h2>{totalDonation} Algos</h2>
-          <h3>Donation received</h3>
-          <h2>{totalDonationReceived} Algos</h2>
         </div>
       </section>
     </div> 
