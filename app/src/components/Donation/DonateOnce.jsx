@@ -50,7 +50,7 @@ function DonateOnce(props) {
           contributePercentage={contributePercentage}></TotalDonation>
 
         <ButtonsPair isActive={amount===0||amount.toString()===''? 'disabled':''} callApplication={async ()=>{
-          await props.callApplication('', totalDonation);
+          await props.callApplication('Donate', totalDonation);
           }}></ButtonsPair>
       </div>
     </>

@@ -21,18 +21,20 @@ def approval_program():
     # localAmount = ScratchVar(TealType.uint64)
     # Apply for donation
     apply = Seq([
-        Assert(Txn.application_args.length() == Int(4)),
+        Assert(Txn.application_args.length() == Int(7)),
         App.globalPut(Bytes("Requests"), App.globalGet(Bytes("Requests")) + Int(1)),
         App.localPut(Txn.sender(), Bytes("Institute"), Txn.application_args[1]),
         App.localPut(Txn.sender(), Bytes("Student ID"), Txn.application_args[2]),
         App.localPut(Txn.sender(), Bytes("Donation Requested"), Mul(Btoi(Txn.application_args[3]),Int(1000000))),
+        App.localPut(Txn.sender(), Bytes("College"), Mul(Btoi(Txn.application_args[4]),Int(1000000))),
+        App.localPut(Txn.sender(), Bytes("Food"), Mul(Btoi(Txn.application_args[5]),Int(1000000))),
+        App.localPut(Txn.sender(), Bytes("Other"), Mul(Btoi(Txn.application_args[6]),Int(1000000))),
         App.localPut(Txn.sender(), Bytes("Donation Received"), Int(0)),
         Return(Int(1))
     ])
     # # Send donation
     # donate = Seq([
-    #     App.localPut(Txn.receiver(), Bytes("Donation Requested"), App.localGet(Txn.receiver(), Bytes("Donation Requested")) -  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
-    #     App.localPut(Txn.receiver(), Bytes("Donation Received"), App.localGet(Txn.receiver(), Bytes("Donation Received")) -  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
+    #     App.localPut(Txn.accounts[1], Bytes("Donation Received"), App.localGet(Txn.accounts[1], Bytes("Donation Received")) +  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
     #     Return(Int(1))
     # ])
     

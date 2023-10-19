@@ -7,7 +7,7 @@ import classes from "../../style/PersonalInfo.module.css";
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 403710840;
+const appIndex = 441810453;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
@@ -23,7 +23,6 @@ function PersonalInfo() {
   const [total,setTotal] = useState(0);
   const [accountAddress, setAccountAddress] = useState(null);
   const [instituteAddress, setInstituteAddress] = useState(null);
-  const [isOptIn, setIsOptIn] = useState(null);
   const isConnectedToPeraWallet = !!accountAddress;
 
   const navigate = useNavigate();
@@ -40,10 +39,10 @@ function PersonalInfo() {
       const total = parseFloat(collegeFee) + parseFloat(dailyMeal) + parseFloat(otherExpenses);
       // All input fields are filled
       setTotal(total);
-      await callApplication('Apply');
+      await callApplication('Apply',total);
 
       // You can navigate to the next page here if needed
-       navigate('/apply-donation/success');
+      navigate('/apply-donation/success');
     }
   };
 
@@ -95,7 +94,7 @@ function PersonalInfo() {
                 </div>
                 <div className={classes.button}>
                   <button type="button" className="btn" onClick={optInToApp}>
-                    {isOptIn ? "Opted In" : "Opt In"}
+                  Opt In
                   </button>
                 </div>
               </div>
@@ -203,18 +202,86 @@ function PersonalInfo() {
       const signedTx = await peraWallet.signTransaction([optInTxGroup]);
       const { txId } = await algod.sendRawTransaction(signedTx).do();
       const result = await waitForConfirmation(algod, txId, 2);
-      setIsOptIn(true);
   }
   
-  async function callApplication(action) {
+  async function callApplication(action,total) {
     try {
       const accInfo= await algod.accountInformation(accountAddress).do();
       const suggestedParams = await algod.getTransactionParams().do();
-      const uint8LocalAmount = new Uint8Array(2);
+      // const signerAccounts=[];
+      // signerAccounts.push(accountAddress);
+      // signerAccounts.push(instituteAddress);
+
+      // // multiSigParams is used when creating the address and when signing transactions
+      // const multiSigParams = {
+      //   version: 1,
+      //   threshold: 2,
+      //   addrs: signerAccounts.map((a) => a.addr),
+      // };
+      // const multisigAddr = algosdk.multisigAddress(multiSigParams);
+
+      // console.log('Created MultiSig Address: ', multisigAddr);
+      // // example: MULTISIG_CREATE
+
+      // const fundMsigTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+      //   from: funder.addr,
+      //   to: multisigAddr,
+      //   amount: 1_000_000,
+      //   suggestedParams,
+      // });
+
+      // await client.sendRawTransaction(fundMsigTxn.signTxn(funder.privateKey)).do();
+      // await algosdk.waitForConfirmation(client, fundMsigTxn.txID().toString(), 3);
+
+      // // example: MULTISIG_SIGN
+      // const msigTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+      //   from: multisigAddr,
+      //   to: funder.addr,
+      //   amount: 100,
+      //   suggestedParams,
+      // });
+
+      // // First signature uses signMultisigTransaction
+      // const msigWithFirstSig = algosdk.signMultisigTransaction(
+      //   msigTxn,
+      //   multiSigParams,
+      //   signerAccounts[0].sk
+      // ).blob;
+
+      // // Subsequent signatures use appendSignMultisigTransaction
+      // const msigWithSecondSig = algosdk.appendSignMultisigTransaction(
+      //   msigWithFirstSig,
+      //   multiSigParams,
+      //   signerAccounts[1].sk
+      // ).blob;
+
+      // await client.sendRawTransaction(msigWithSecondSig).do();
+      // await algosdk.waitForConfirmation(client, msigTxn.txID().toString(), 3);
+      const uint8College = new Uint8Array(2);
       for (let i = 0; i < 2; i++) {
-        uint8LocalAmount[i] = (total >> (8 * (2 - 1 - i))) & 0xff;
+        uint8College[i] = (collegeFee >> (8 * (2 - 1 - i))) & 0xff;
       }
-      const appArgs = [new Uint8Array(Buffer.from(action)),new Uint8Array(Buffer.from(selectedUni)), new Uint8Array(Buffer.from(studenttId)),uint8LocalAmount];        
+      const uint8Food = new Uint8Array(2);
+      for (let i = 0; i < 2; i++) {
+        uint8Food[i] = (dailyMeal >> (8 * (2 - 1 - i))) & 0xff;
+      }
+      const uint8Other = new Uint8Array(2);
+      for (let i = 0; i < 2; i++) {
+        uint8Other[i] = (otherExpenses >> (8 * (2 - 1 - i))) & 0xff;
+      }
+      const uint8Total = new Uint8Array(2);
+      for (let i = 0; i < 2; i++) {
+        uint8Total[i] = (total >> (8 * (2 - 1 - i))) & 0xff;
+      }
+      const appArgs = [
+        new Uint8Array(Buffer.from(action)),
+        new Uint8Array(Buffer.from(selectedUni)), 
+        new Uint8Array(Buffer.from(studenttId)),
+        uint8Total,
+        uint8College,
+        uint8Food,
+        uint8Other
+      ];        
       const actionTx = 
       algosdk.makeApplicationNoOpTxn(
         accountAddress,
@@ -223,16 +290,33 @@ function PersonalInfo() {
         appArgs
         );
         const txnGroup=[
-          {txn: actionTx, signers: [ instituteAddress]},
+          {txn: actionTx, signers: [instituteAddress]},
         ];
         const signedTxn = await peraWallet.signTransaction([txnGroup]);
         const { txId } = await algod.sendRawTransaction(signedTxn).do();
         const result = await waitForConfirmation(algod, txId, 2);
-      
+        await checkLocalState();
     } catch (e) {
-      console.error(`There was an error calling the  app: ${e}`);
+      console.error(`There was an error calling the app: ${e}`);
     }
     
+  }
+  async function checkLocalState() {
+    try {
+      const accountInfo = await algod.accountApplicationInformation(accountAddress,appIndex).do();
+      for (const key of accountInfo['app-local-state']['key-value']) {
+        const keyName=Buffer.from(key.key,'base64').toString('ascii');
+        const type=key.value.type;
+        if(type==1){
+          console.log(Buffer.from(key.value.bytes,'base64').toString('ascii'));
+        }
+      }
+      // console.log(Buffer.from(accountInfo['app-local-state']['key-value'][1].value.bytes,'base64').toString('ascii'));
+      // console.log(accountInfo['app-local-state']['key-value'][3].value.bytes);
+      // console.log(accountInfo['app-local-state']);
+    } catch (e) {
+      console.error('There was an error connecting to the algorand node: ', e)
+    }
   }
 }
 

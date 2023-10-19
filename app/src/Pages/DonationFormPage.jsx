@@ -7,13 +7,12 @@ import { PeraWalletConnect } from "@perawallet/connect";
 import algosdk, { algosToMicroalgos, waitForConfirmation } from "algosdk";
 import { useParams } from "react-router-dom";
 import Students from "../db.json";
-// import { useNavigate } from "react-router-dom";
 
 // Create the PeraWalletConnect instance outside the component
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 403710840;
+const appIndex = 441810453;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2(
@@ -29,7 +28,6 @@ function DonationFormPage() {
   const [accountAddress, setAccountAddress] = useState(null);
   const [studentAddress, setStudentAddress] = useState(null);
   const [studentName, setStudentName] = useState("");
-  const [txId, setTxId] = useState(null);
   const isConnectedToPeraWallet = !!accountAddress;
   // const appAddress = algosdk.getApplicationAddress(appIndex);
   // const navigate = useNavigate();
@@ -111,7 +109,6 @@ function DonationFormPage() {
             ) : (
               <DonateOnce callApplication={callApplication}></DonateOnce>
             )}
-            <div className={classes.options}>Transaction ID: {txId}</div>
           </div>
         </div>
       </main>
@@ -160,7 +157,6 @@ function DonationFormPage() {
     try {
       const accInfo = await algod.accountInformation(accountAddress).do();
       const suggestedParams = await algod.getTransactionParams().do();
-      if (action === "") {
         const payTxn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
           from: accountAddress,
           suggestedParams: suggestedParams,
@@ -171,39 +167,20 @@ function DonationFormPage() {
         const signedTxn = await peraWallet.signTransaction([txnGroup]);
         const { txId } = await algod.sendRawTransaction(signedTxn).do();
         // const result = await waitForConfirmation(algod, txId, 3);
-        setTxId(txId);
-      } else {
-        console.log("Modify global state");
         const uint8LocalAmount = new Uint8Array(2);
         for (let i = 0; i < 2; i++) {
           uint8LocalAmount[i] = (amount >> (8 * (2 - 1 - i))) & 0xff;
         }
-        const appArgs = [new Uint8Array(Buffer.from(action)), uint8LocalAmount];
+        const appArgs = [new Uint8Array(Buffer.from(action)), uint8LocalAmount,new Uint8Array(Buffer.from(studentAddress))];
         const actionTx = algosdk.makeApplicationNoOpTxn(
           accountAddress,
           suggestedParams,
           appIndex,
           appArgs
         );
-        const txnGroup = [{ txn: actionTx, signers: [accountAddress] }];
-        const signedTxn = await peraWallet.signTransaction([txnGroup]);
-        const { txId } = await algod.sendRawTransaction(signedTxn).do();
-        // const result = await waitForConfirmation(algod, txId, 2);
-      }
-
-      // // get suggested params
-      // const suggestedParams = await algod.getTransactionParams().do();
-
-      // const actionTxGroup = [
-      //   {txn: actionTx, signers: [accountAddress]},
-      // ];
-
-      // const signedTx = await peraWallet.signTransaction([actionTxGroup]);
-      // const { txId } = await algod.sendRawTransaction(signedTx).do();
-      // const result = await waitForConfirmation(algod, txId, 2);
-      // console.log(result);
-      // setLocalAmount(1);
-      // // checkLocalAmountState();
+        const txnGroupLocal = [{ txn: actionTx, signers: [accountAddress,studentAddress] }];
+        const signedTxnLocal = await peraWallet.signTransaction([txnGroupLocal]);
+        const { txIdLocal } = await algod.sendRawTransaction(signedTxnLocal).do();
     } catch (e) {
       console.error(`There was an error calling the  app: ${e}`);
     }
