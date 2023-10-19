@@ -18,9 +18,6 @@ function HomeCard(props) {
             <p>
               Student ID: {student.student_id}
             </p>
-            <p className={classes.walletAddress}>
-              Wallet Address: {student.address_pera}
-            </p>
             <p>
               Institute: {student.institution}
             </p>
