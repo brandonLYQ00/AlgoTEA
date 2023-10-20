@@ -22,6 +22,14 @@
   /* height: 100%; */
 }
 
+.secondary_btn_admin {
+  background-color: red;
+  border-radius: 10px;
+  width: 35%;
+  color: black;
+  /* height: 100%; */
+}
+
 .buttons button:hover {
   background-color: #6ffcd2;
 }

@@ -11,7 +11,7 @@
   margin-bottom: 10px;
   font-feature-settings: "clig" off, "liga" off;
   flex-grow: 0;
-  background-color: #6ffcd2;
+  box-shadow: 0px 15px 10px -15px #111;   
 }
 
 .logo {
@@ -70,12 +70,12 @@
 
 .header nav ul li:hover {
   padding: 10px;
-  background-color: white;
+  background-color: black;
   height: 5rem;
 }
 
 .header nav ul li:hover h4 {
-  color: black;
+  color: white;
 }
 
 .header button {
