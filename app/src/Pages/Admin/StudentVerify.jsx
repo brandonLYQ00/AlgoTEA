@@ -7,7 +7,7 @@ function StudentVerify() {
 
     const navigate = useNavigate();
 
-   
+
 
     
   return (
@@ -27,7 +27,7 @@ function StudentVerify() {
             <div className={classes.card_container}>
               <div>
                 <h5>Student ID</h5>
-                <p>Student N Werty</p>
+                <p>A19EC25523</p>
               </div>
               <div></div>
             </div>
@@ -61,7 +61,24 @@ function StudentVerify() {
               <div></div>
             </div>
 
-            <footer className={classes.summary}>
+
+            <div className={classes.card_container}>
+              <div>
+                <h5>Net Income</h5>
+                <p>
+                 <input type="number" placeholder=" e.g -1000-2500"/>
+                 </p>
+               
+              </div>
+              <div>
+                <h5>Siblings</h5>
+                <p><input type="number" placeholder=" e.g- 2" /></p>
+              </div>
+            </div>
+
+           
+          </div>
+          <footer className={classes.summary}>
               <p>Amount Requested </p>
               <h2>
                 3000 Algos <i class="fa-solid fa-pen fa-2xs" onClick={()=>{
@@ -88,7 +105,6 @@ function StudentVerify() {
                 <ButtonsPair isAdmin={true}></ButtonsPair>
               </div>
             </footer>
-          </div>
         </div>
       </div>
     </div>

@@ -9,13 +9,15 @@
 
 .title{
 text-align: center;
+padding: 30px;
 
 }
 
 .card_container{
     /* background-color: aqua; */
-    display: flex;
-    width: 45rem;
+    /* display: flex;
+    */
+    width: 21rem; 
     justify-content: space-between;
     padding-left: 15%;
     padding-right: 15%;
@@ -24,6 +26,8 @@ text-align: center;
 }
 
 .summary{
+   
+    padding: 30px;
     text-align: center;
     background-color: black;
     display: flex;
@@ -59,10 +63,11 @@ text-align: center;
 
   .card_container input{
     border: 2px solid black;
+    padding-left: 10px;
   }
 
-  .summary i:hover{
-    cursor: pointer;
-  }
 
+  .summary button{
+    background-color: #6ffcd2;
+  }
 
