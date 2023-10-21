@@ -6,7 +6,7 @@ import algosdk from 'algosdk';
 import { useNavigate, useParams } from "react-router-dom";
 
 
-const appIndex = 441810453;
+const appIndex = 447864179;
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
 
 

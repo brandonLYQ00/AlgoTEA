@@ -12,7 +12,7 @@ import Students from "../db.json";
 const peraWallet = new PeraWalletConnect();
 
 // The app ID on testnet
-const appIndex = 441810453;
+const appIndex = 447864179;
 
 // connect to the algorand node
 const algod = new algosdk.Algodv2(

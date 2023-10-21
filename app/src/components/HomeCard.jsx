@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import algosdk from 'algosdk';
 
 
-const appIndex = 441810453;
+const appIndex = 447864179;
 const algod = new algosdk.Algodv2('','https://testnet-api.algonode.cloud', 443);
 
 function HomeCard(props) {
