@@ -78,31 +78,25 @@ function HomeCard(props) {
     </>
   );
   async function checkLocalState(addr) {
-    try {
-      const accountInfo = await algod.accountApplicationInformation(addr,appIndex).do();
-      setIsShown(true);
-      for (const key of accountInfo['app-local-state']['key-value']) {
-        const keyName=Buffer.from(key.key,'base64').toString('ascii');
-        if(keyName==="Donation Requested"){
-          setTotalDonation(key.value.uint/1000000);
-        }
-        if(keyName==="College"){
-          setCollegeDonation(key.value.uint/1000000);
-        }
-        if(keyName==="Food"){
-          setFoodDonation(key.value.uint/1000000);
-        }
-        if(keyName==="Other"){
-          setOtherDonation(key.value.uint/1000000);
-        }
-        // if(keyName==="Donation Received"){
-        //   setTotalDonationReceived(key.value.uint/1000000);
-        // }
+    const accountInfo = await algod.accountApplicationInformation(addr,appIndex).do();
+    setIsShown(true);
+    for (const key of accountInfo['app-local-state']['key-value']) {
+      const keyName=Buffer.from(key.key,'base64').toString('ascii');
+      if(keyName==="Donation Requested"){
+        setTotalDonation(key.value.uint/1000000);
       }
-      
-    } catch (e) {
-      setIsShown(false);
-      console.error('There was an error connecting to the algorand node: ', e)
+      if(keyName==="College"){
+        setCollegeDonation(key.value.uint/1000000);
+      }
+      if(keyName==="Food"){
+        setFoodDonation(key.value.uint/1000000);
+      }
+      if(keyName==="Other"){
+        setOtherDonation(key.value.uint/1000000);
+      }
+      // if(keyName==="Donation Received"){
+      //   setTotalDonationReceived(key.value.uint/1000000);
+      // }
     }
   }
 }

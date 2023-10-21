@@ -15,6 +15,7 @@ function DonationHistoryTable(props) {
         <h1>You've made {data.length} donations so far</h1>
       )}
       <table className={classes.table}>
+        <thead>
         {isAdmin ? (
           <tr>
             <th>Date</th>
@@ -34,7 +35,7 @@ function DonationHistoryTable(props) {
             <th></th>
           </tr>
         )}
-
+        </thead>
         <tbody>
           {isAdmin
             ? data.map((val, key) => {
@@ -62,9 +63,9 @@ function DonationHistoryTable(props) {
                     <td
                       className={classes.track_spending}
                       onClick={() => {
-                        console.log(val.link);
+                        alert(val.link);
                       }}>
-                      {val.link}
+                      Click here to track transaction
                     </td>
                   </tr>
                 );

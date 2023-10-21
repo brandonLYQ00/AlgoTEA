@@ -11,18 +11,11 @@ function ProfilePageHistory() {
   };
   const data = [
     {
-      date: "27 Sept",
-      receiver: "Student N",
-      amount: "5000",
-      status: "spent",
-      link: "Track spending1",
-    },
-    {
-      date: "27 Sept",
-      receiver: "Student N",
-      amount: "5000",
-      status: "spent",
-      link: "Track spending2",
+      date: "22 Oct",
+      receiver: "Brandon Liew Yi Quan",
+      amount: "5",
+      status: "Successful",
+      link: "https://testnet.algoexplorer.io/tx/4VEHYMEJP42N6OLJS7QBCGCA3FMH2ULWVZAOQK3YBDQXNAE3C2HA",
     },
   ];
   return (

@@ -1,5 +1,4 @@
 #contract.py
-# This file based on the counter app from the Algorand documentation - https://developer.algorand.org/docs/get-details/dapps/pyteal/#final-product
 from pyteal import *
 
 def approval_program():
@@ -17,8 +16,6 @@ def approval_program():
     handle_closeout = Return(Int(0))
     handle_updateapp = Return(Int(0))
     handle_deleteapp = Return(Int(0))
-    # scratchAmount = ScratchVar(TealType.uint64)
-    # localAmount = ScratchVar(TealType.uint64)
     # Apply for donation
     apply = Seq([
         Assert(Txn.application_args.length() == Int(7)),
@@ -32,19 +29,11 @@ def approval_program():
         App.localPut(Txn.sender(), Bytes("Donation Received"), Int(0)),
         Return(Int(1))
     ])
-    # # Send donation
-    # donate = Seq([
-    #     App.localPut(Txn.accounts[1], Bytes("Donation Received"), App.localGet(Txn.accounts[1], Bytes("Donation Received")) +  Mul(Btoi(Txn.application_args[1]),Int(1000000))),
-    #     Return(Int(1))
-    # ])
-    
-
     
 
     handle_noop = Seq(
         Cond(
             [Txn.application_args[0] == Bytes("Apply"), apply],
-            # [Txn.application_args[0] == Bytes("Donate"), donate]
         )
     )
 

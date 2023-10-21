@@ -13,10 +13,10 @@ function ProfilePageHistory() {
   };
   const data = [
     {
-      date: "27 Sept",
-      applicant: "Student N",
-      id: "UNITEN A2307512",
-      amount: [700.06,700.06,700.06,],
+      date: "22 Oct",
+      applicant: "Brandon Liew Yi Quan",
+      id: "A19EC0184",
+      amount: [100,100,100],
       status: "Approved",
     },
   

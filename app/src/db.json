@@ -5,6 +5,9 @@
         "address_pera":"DGNPJVOUYRTP2RIHUMKV2UXPSOHCH6FOKS4ZBKZEBJNGKJ5YPFMXRE33ZE",
         "address_institution":"VT5VQJWTAGLLB4ZZLS335F7TZI75WRY74RQO4Y4KE3IOG244R6RCZCDXEI",
         "institution":"UTM",
+        "faculty":"Faculty of Computing",
+        "email":"yi2018@graduate.utm.my",
+        "phone":"0168724635",
         "fee_tuition":1000,
         "fee_others":1000,
         "fee_meals":1000
@@ -15,6 +18,9 @@
         "address_pera":"NY4R7R54CZAJX4U7XTWGYUPKXBVN7QRW227MHBV5MG52GP7NWKLZ4UQNQA",
         "address_institution":"VT5VQJWTAGLLB4ZZLS335F7TZI75WRY74RQO4Y4KE3IOG244R6RCZCDXEI",
         "institution":"UTM",
+        "faculty":"Faculty of Computing",
+        "email":"ron8@graduate.utm.my",
+        "phone":"012323235",
         "fee_tuition":1000,
         "fee_others":1000,
         "fee_meals":2000
@@ -25,6 +31,9 @@
         "address_pera":"5Q5VGZF2BC2DLFPHA5CTNTL7Q6JYTVJHSELUUBMZREUKBKHNKSQIDJLDVI",
         "address_institution":"VT5VQJWTAGLLB4ZZLS335F7TZI75WRY74RQO4Y4KE3IOG244R6RCZCDXEI",
         "institution":"UTM",
+        "faculty":"Faculty of Computing",
+        "email":"narm@graduate.utm.my",
+        "phone":"012233435",
         "fee_tuition":2000,
         "fee_others":2000,
         "fee_meals":1000
@@ -35,6 +44,9 @@
         "address_pera":"S213",
         "address_institution":"VT5VQJWTAGLLB4ZZLS335F7TZI75WRY74RQO4Y4KE3IOG244R6RCZCDXEI",
         "institution":"UTM",
+        "faculty":"Faculty of Computing",
+        "email":"dan@graduate.utm.my",
+        "phone":"0161123324",
         "fee_tuition":2000,
         "fee_others":1000,
         "fee_meals":1000
